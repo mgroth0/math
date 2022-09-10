@@ -33,8 +33,13 @@
 	},
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
-	  "cfg" :  "jvmMainImplementation",
+	  "cfg" :  "jvmMainApi",
 	  "key" :  "kotlinx-multik-api"
+	},
+	{
+	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
+	  "cfg" :  "jvmMainApi",
+	  "path" : ":k:stream"
 	}
   ]
 }

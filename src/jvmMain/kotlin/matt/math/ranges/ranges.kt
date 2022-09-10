@@ -1,10 +1,10 @@
 package matt.math.ranges
 
-import matt.kjlib.jmath.assertRound
-import matt.kjlib.jmath.compareTo
-import matt.kjlib.jmath.minus
-import matt.kjlib.jmath.plus
-import matt.kjlib.jmath.toApfloat
+import matt.math.jmath.assertRound
+import matt.math.jmath.compareTo
+import matt.math.jmath.minus
+import matt.math.jmath.plus
+import matt.math.jmath.toApfloat
 import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath

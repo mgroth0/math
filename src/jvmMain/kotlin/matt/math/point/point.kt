@@ -4,12 +4,12 @@ package matt.math.point
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
-import matt.kjlib.jmath.minus
-import matt.kjlib.jmath.plus
+import matt.math.jmath.minus
+import matt.math.jmath.plus
 import matt.math.ser.ApfloatSerializer
-import matt.kjlib.jmath.sq
-import matt.kjlib.jmath.sqrt
-import matt.kjlib.jmath.toApfloat
+import matt.math.jmath.sq
+import matt.math.jmath.sqrt
+import matt.math.jmath.toApfloat
 import matt.math.BasicPoint
 import matt.math.Point
 import org.apfloat.Apfloat
