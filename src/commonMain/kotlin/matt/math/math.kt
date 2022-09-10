@@ -302,8 +302,8 @@ interface Point {
   //  val yDouble
   //	get() = when (this) {
   //	  is JsonPoint  -> y
-  //	  is matt.kjlib.jmath.point.BasicPoint -> y
-  //	  is matt.kjlib.jmath.point.APoint     -> y.toDouble()
+  //	  is matt.math.point.BasicPoint -> y
+  //	  is matt.math.point.APoint     -> y.toDouble()
   //	}
 
 
