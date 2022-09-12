@@ -1,6 +1,7 @@
 package matt.math.jmath
 
 import com.aparapi.internal.exception.AparapiException
+import matt.collect.itr.forEachNested
 import matt.math.bgdecimal.BigDecimalMath
 import matt.math.DOUBLE_ONE
 import matt.math.Sides

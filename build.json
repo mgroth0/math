@@ -17,6 +17,11 @@
 	  "path" : ":k:lang"
 	},
 	{
+	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
+	  "cfg" :  "commonMainApi",
+	  "path" : ":k:collect"
+	},
+	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
 	  "cfg" :  "commonMainApi",
 	  "key" :  "kotlinx-serialization-json"
