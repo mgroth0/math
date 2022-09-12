@@ -6,8 +6,6 @@ import matt.math.DOUBLE_ONE
 import matt.math.Sides
 import matt.math.getPoisson
 import matt.math.sq
-import matt.stream.StreamClassForDepAnalysis
-import matt.stream.forEachNested
 import org.apache.commons.math3.special.Gamma
 import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
@@ -145,7 +143,6 @@ infix fun Array<out Apfloat?>.dotA(other: Array<out Apfloat?>): Apfloat {
 infix fun MultiArray<Float, D2>.dot(other: MultiArray<Float, D2>): Float {
   require(this.shape[0] == this.shape[1] && this.shape[0] == other.shape[0] && this.shape[1] == other.shape[1])
   var ee = 0.0.toFloat()
-  StreamClassForDepAnalysis()
   (0 until this.shape[0]).forEachNested { x, y ->
 	val first = this[x][y]
 	val second = other[x][y]
