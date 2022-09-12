@@ -40,11 +40,6 @@
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
 	  "cfg" :  "jvmMainApi",
 	  "key" :  "aparapi"
-	},
-	{
-	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
-	  "cfg" :  "jvmMainApi",
-	  "path" : ":k:stream"
 	}
   ]
 }
