@@ -10,7 +10,6 @@ import kotlin.math.exp
 import kotlin.math.floor
 import kotlin.math.ln
 import kotlin.math.pow
-import kotlin.math.round
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -63,7 +62,22 @@ fun Sequence<Double>.mean() = toList().mean()
 @JvmName("meanInt")
 fun Sequence<Int>.mean() = map { it.toDouble() }.mean()
 
-fun <T: Comparable<T>> List<T>.median() = if (this.isEmpty()) null else this.sorted()[round(this.size/2.0).toInt() - 1]
+fun List<Double>.median() = when {
+  isEmpty()    -> null
+  size.isOdd() -> this[(size - 1)/2]
+  else         -> (this[(size)/2] + this[(size - 1)/2])/2.0
+}
+
+interface Mathable<M: Mathable<M>> {
+  operator fun plus(m: M): M
+  operator fun div(n: Number): M
+}
+
+fun <M: Mathable<M>> List<M>.median() = when {
+  isEmpty()    -> null
+  size.isOdd() -> this[(size - 1)/2]
+  else         -> (this[(size)/2] + this[(size - 1)/2])/2.0
+}
 
 fun DoubleArray.mean() = sum()/size
 fun IntArray.intMean() = (sum()/size.toDouble()).roundToInt()
