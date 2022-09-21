@@ -36,11 +36,7 @@
 	  "cfg" :  "jvmMainImplementation",
 	  "key" :  "apfloat"
 	},
-	{
-	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
-	  "cfg" :  "jvmMainApi",
-	  "key" :  "kotlinx-multik-api"
-	},
+
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
 	  "cfg" :  "jvmMainApi",

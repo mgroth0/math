@@ -12,16 +12,16 @@ import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath
 import org.apfloat.Apint
-import org.jetbrains.kotlinx.multik.api.empty
 import org.jetbrains.kotlinx.multik.api.mk
+import org.jetbrains.kotlinx.multik.api.zeros
 import org.jetbrains.kotlinx.multik.ndarray.data.D2
+import org.jetbrains.kotlinx.multik.ndarray.data.D2Array
 import org.jetbrains.kotlinx.multik.ndarray.data.MultiArray
 import org.jetbrains.kotlinx.multik.ndarray.data.NDArray
 import org.jetbrains.kotlinx.multik.ndarray.data.get
 import org.jetbrains.kotlinx.multik.ndarray.data.set
-import org.jetbrains.kotlinx.multik.ndarray.operations.forEachIndexed
+import org.jetbrains.kotlinx.multik.ndarray.operations.forEachMultiIndexed
 import org.jetbrains.kotlinx.multik.ndarray.operations.sum
-import org.jetbrains.kotlinx.multik.ndarray.operations.times
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
@@ -215,7 +215,7 @@ infix fun Array<Apcomplex>.dot(other: Array<Apcomplex>): Apfloat {
 	val first = this[x]
 	val second = other[x]
 	if (!first.hasImag && !second.hasImag) {
-	  val r = this[x]*other[x]
+	  val r = this[x].multiply(other[x])
 	  ee += r
 	}
   }
@@ -255,7 +255,7 @@ infix fun MultiArray<Apcomplex, D2>.dot(other: MultiArray<Apcomplex, D2>): Apflo
 	val first = this[x][y]
 	val second = other[x][y]
 	if (!first.hasImag && !second.hasImag) {
-	  ee += first*second
+	  ee += first.multiply(second)
 	}
   }
   return ee
@@ -305,16 +305,17 @@ fun AsigmoidDerivative(x: Apfloat): Apfloat = Ae.pow(-x).let { it/(1.toApint() +
 
 
 fun <N: Number> NDArray<N, D2>.convolve(kernel: NDArray<Double, D2>): NDArray<Double, D2> {
-  val result = mk.empty<Double, D2>(shape[0], shape[1])
+  val result: D2Array<Double> = mk.zeros(shape[0], shape[1])
   val kPxsUsed = mutableListOf<Double>()
   val ksum = kernel.sum()
-  forEachIndexed { indices, px ->
+
+  forEachMultiIndexed { indices, px ->
 	val k = mutableListOf<Double>()
-	kernel.forEachIndexed { kindices, kval ->
+	kernel.forEachMultiIndexed { kindices, kval ->
 	  val kx = kindices[0] + indices[0]
 	  val ky = kindices[1] + indices[1]
 	  if (kx >= 0 && kx < this.shape[0] && ky >= 0 && ky < this.shape[1]) {
-		k += px*kval
+		k += px.toDouble()*kval
 		kPxsUsed.add(kval)
 	  }
 	}
