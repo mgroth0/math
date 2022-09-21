@@ -12,6 +12,11 @@
 	  "key" :  "kt-stdlib-js"
 	},
 	{
+	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
+	  "cfg" :  "commonMainApi",
+	  "key" :  "kotlinx-multik-default"
+	},
+	{
 	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
 	  "cfg" :  "commonMainApi",
 	  "path" : ":k:lang"

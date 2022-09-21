@@ -44,6 +44,10 @@ val API: Apfloat = ApfloatMath.pi(20)
 val AZERO: Apint = Apfloat.ZERO
 val AZERO_FLOAT = Apfloat.ZERO.toApfloat()
 
+fun Float.roundToDecimalPlace(n: Int): Float {
+  val factor = 10.0f.pow(n)
+  return (factor*this).roundToInt() / factor
+}
 
 fun Float.sigFigs(n: Int): Float {
   var bd = BigDecimal(this.toDouble())
