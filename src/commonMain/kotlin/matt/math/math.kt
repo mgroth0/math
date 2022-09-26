@@ -149,8 +149,18 @@ data class Sides(val adj: Double, val opp: Double)
 
 @OptIn(kotlin.experimental.ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
-@kotlin.jvm.JvmName("sumOfFloat")
-public inline fun <T> Iterable<T>.sumOf(selector: (T)->Float): Float {
+@JvmName("sumOfFloat")
+inline fun <T> Iterable<T>.sumOf(selector: (T)->Float): Float {
+  var sum: Float = 0f
+  for (element in this) {
+	sum += selector(element)
+  }
+  return sum
+}
+@OptIn(kotlin.experimental.ExperimentalTypeInference::class)
+@OverloadResolutionByLambdaReturnType
+@JvmName("sumOfFloat")
+inline fun FloatArray.sumOf(selector: (Float)->Float): Float {
   var sum: Float = 0f
   for (element in this) {
 	sum += selector(element)
