@@ -34,7 +34,7 @@
 	},
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
-	  "cfg" :  "jvmMainImplementation",
+	  "cfg" :  "jvmMainApi",
 	  "key" :  "apfloat"
 	},
 

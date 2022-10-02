@@ -1,7 +1,6 @@
 package matt.math.jmath
 
 import com.aparapi.internal.exception.AparapiException
-import matt.collect.itr.forEachNested
 import matt.math.DOUBLE_ONE
 import matt.math.Sides
 import matt.math.bgdecimal.BigDecimalMath
@@ -12,16 +11,6 @@ import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath
 import org.apfloat.Apint
-import org.jetbrains.kotlinx.multik.api.mk
-import org.jetbrains.kotlinx.multik.api.zeros
-import org.jetbrains.kotlinx.multik.ndarray.data.D2
-import org.jetbrains.kotlinx.multik.ndarray.data.D2Array
-import org.jetbrains.kotlinx.multik.ndarray.data.MultiArray
-import org.jetbrains.kotlinx.multik.ndarray.data.NDArray
-import org.jetbrains.kotlinx.multik.ndarray.data.get
-import org.jetbrains.kotlinx.multik.ndarray.data.set
-import org.jetbrains.kotlinx.multik.ndarray.operations.forEachMultiIndexed
-import org.jetbrains.kotlinx.multik.ndarray.operations.sum
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
@@ -114,192 +103,8 @@ fun List<BigDecimal>.geometricMean() = fold(BigDecimal.ONE) { acc, d -> acc*d }
 fun Sequence<BigDecimal>.geometricMean() = toList().geometricMean()
 
 
-infix fun Array<out Apfloat?>.dotA(other: Array<out Apfloat?>): Apfloat {
-  require(this.size == other.size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
-	val first = this[x]
-	val second = other[x]
-	if (first != null && second != null) {
-	  val r = first*second
-	  ee += r
-	}
-  }
-  return ee
-
-}
-
-
-/*infix fun FloatArray.dot(other: FloatArray): Float {
-  require(this.size == other.size)
-  var ee = 0.0f
-  (0 until this.size).forEach { x ->
-	val first = this[x]
-	val second = other[x]
-	if (first != Float.NaN && second != Float.NaN) {
-	  val r = first*second
-	  ee += r
-	}
-  }
-  return ee
-
-}*/
-
-infix fun MultiArray<Float, D2>.dot(other: MultiArray<Float, D2>): Float {
-  require(this.shape[0] == this.shape[1] && this.shape[0] == other.shape[0] && this.shape[1] == other.shape[1])
-  var ee = 0.0.toFloat()
-  (0 until this.shape[0]).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (!first.isNaN() && !second.isNaN()) {
-	  ee += this[x][y]*other[x][y]
-	}
-  }
-  return ee
-}
-
-infix fun MultiArray<Double, D2>.dot(other: MultiArray<Double, D2>): Double {
-  require(this.shape[0] == this.shape[1] && this.shape[0] == other.shape[0] && this.shape[1] == other.shape[1])
-  var ee = 0.0
-  (0 until this.shape[0]).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (!first.isNaN() && !second.isNaN()) {
-	  ee += this[x][y]*other[x][y]
-	}
-  }
-  return ee
-}
-
-infix fun Array<Array<Apfloat?>>.dot(other: Array<Array<Apfloat?>>): Apfloat {
-  require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (first != null && second != null) {
-	  ee += first*second
-	}
-  }
-  return ee
-}
-
-infix fun Array<Array<Double?>>.dot(other: Array<Array<Double?>>): Apfloat {
-  require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (first != null && second != null) {
-	  ee += first*second
-	}
-  }
-  return ee
-}
-
-infix fun Array<Array<Float?>>.dot(other: Array<Array<Float?>>): Float {
-  require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
-  var ee = 0.0f
-  (0 until this.size).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (first != null && second != null) {
-	  ee += first*second
-	}
-  }
-  return ee
-}
 
 val Apcomplex.hasImag: Boolean get() = imag() == Apcomplex.ZERO
-
-infix fun Array<Apcomplex>.dot(other: Array<Apcomplex>): Apfloat {
-  require(this.size == other.size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
-	val first = this[x]
-	val second = other[x]
-	if (!first.hasImag && !second.hasImag) {
-	  val r = this[x].multiply(other[x])
-	  ee += r
-	}
-  }
-  return ee
-
-}
-
-infix fun Array<Apfloat>.dot(other: Array<Apfloat>): Apfloat {
-  require(this.size == other.size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
-	val first = this[x]
-	val second = other[x]
-	if (!first.hasImag && !second.hasImag) {
-	  val r = this[x]*other[x]
-	  ee += r
-	}
-  }
-  return ee
-}
-
-infix fun MultiArray<Apfloat, D2>.dot(other: MultiArray<Apfloat, D2>): Apfloat {
-  require(this.shape[0] == this.shape[1] && this.shape[0] == other.shape[0] && this.shape[1] == other.shape[1])
-  var ee = 0.0.toApfloat()
-  (0 until this.shape[0]).forEachNested { x, y ->
-	ee += this[x][y]*other[x][y]
-  }
-  return ee
-
-}
-
-@JvmName("dotApcomplexD2")
-infix fun MultiArray<Apcomplex, D2>.dot(other: MultiArray<Apcomplex, D2>): Apfloat {
-  require(this.shape[0] == this.shape[1] && this.shape[0] == other.shape[0] && this.shape[1] == other.shape[1])
-  var ee = 0.0.toApfloat()
-  (0 until this.shape[0]).forEachNested { x, y ->
-	val first = this[x][y]
-	val second = other[x][y]
-	if (!first.hasImag && !second.hasImag) {
-	  ee += first.multiply(second)
-	}
-  }
-  return ee
-
-
-  /*this is a different calculation...*/
-  /*val d = mk.linalg.dot(stim.mat, mat).sum()*/
-
-  /*	//	val dottic = tic()
-	  //	dottic.toc("starting regular dot product")*/
-
-  /*	//	dottic.toc("finished regular dot product: $e")
-
-	  //	dottic.toc("finished GPU dot product")
-	  //	val flatStimMat = stim.mat.flatten()
-	  //	val flatMat = mat.flatten()*/
-
-
-  /*val ensureCreatedFirst = stim.flatMat
-  val ensureCreatedFirst2 = flatMat
-  val result = DoubleArray(field.size2D)
-  val k = object: Kernel() {
-	override fun run() {
-	  result[globalId] = stim.flatMat[globalId]*flatMat[globalId]
-	}
-  }
-  k.execute(Range.create(field.size2D))*/
-  //	val s = result.sum()
-  //	dottic.toc("finished GPU dot product: $s")
-
-  /*val best = KernelManager.instance().bestDevice()
-  println("best:${best}")*/
-
-
-  /*exitProcess(0)*/
-
-
-  /*return result.sum()*/
-  /*return DotProductGPU(stim.flatMat, flatMat).calc()*/
-}
 
 
 fun sigmoid(x: Double): Double = 1/(1 + e.pow(-x))
@@ -308,25 +113,7 @@ fun Asigmoid(x: Apfloat): Apfloat = 1.toApint()/(1.toApint() + Ae.pow(-x))
 fun AsigmoidDerivative(x: Apfloat): Apfloat = Ae.pow(-x).let { it/(1.toApint() + it).sq() }
 
 
-fun <N: Number> NDArray<N, D2>.convolve(kernel: NDArray<Double, D2>): NDArray<Double, D2> {
-  val result: D2Array<Double> = mk.zeros(shape[0], shape[1])
-  val kPxsUsed = mutableListOf<Double>()
-  val ksum = kernel.sum()
 
-  forEachMultiIndexed { indices, px ->
-	val k = mutableListOf<Double>()
-	kernel.forEachMultiIndexed { kindices, kval ->
-	  val kx = kindices[0] + indices[0]
-	  val ky = kindices[1] + indices[1]
-	  if (kx >= 0 && kx < this.shape[0] && ky >= 0 && ky < this.shape[1]) {
-		k += px.toDouble()*kval
-		kPxsUsed.add(kval)
-	  }
-	}
-	result[indices[0], indices[1]] = k.sum()*(ksum/kPxsUsed.sum())
-  }
-  return result
-}
 
 fun Number.toApfloat() = when (this) {
   is Int    -> Apfloat(this.toDouble())

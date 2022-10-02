@@ -30,7 +30,7 @@ object BigDecimalMath {
    * The base of the natural logarithm in a predefined accuracy.
    * http://www.cs.arizona.edu/icon/oddsends/e.htm
    * The precision of the predefined constant is one less than
-   * the string's length, taking into account the decimal dot.
+   * the string's length, taking into account the decimal matt.math.dot.dot.
    * static int E_PRECISION = E.length()-1 ;
    */
   var E = BigDecimal(
