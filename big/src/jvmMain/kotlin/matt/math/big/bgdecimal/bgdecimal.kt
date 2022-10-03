@@ -7,8 +7,8 @@ package matt.math.big.bgdecimal
 import matt.lang.err
 import matt.math.big.bernoulli.Bernoulli
 import matt.math.big.bigcomplex.BigComplex
-import matt.math.factorial.Factorial
-import matt.math.rational.Rational
+import matt.math.big.factorial.Factorial
+import matt.math.big.rational.Rational
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
