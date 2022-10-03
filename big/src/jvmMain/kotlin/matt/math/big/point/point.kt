@@ -1,4 +1,4 @@
-@file:UseSerializers(ApfloatSerializer, ApintSerializer)
+@file:UseSerializers(ApfloatSerializer::class, ApintSerializer::class)
 
 package matt.math.big.point
 

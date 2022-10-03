@@ -1,10 +1,10 @@
 package matt.math.big.ranges
 
 import matt.math.big.assertRound
+import matt.math.big.compareTo
 import matt.math.big.minus
 import matt.math.big.plus
 import matt.math.big.toApfloat
-import matt.math.big.compareTo
 import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath
