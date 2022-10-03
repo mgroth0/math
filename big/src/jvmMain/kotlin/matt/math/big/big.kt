@@ -12,8 +12,6 @@ import org.apfloat.Apint
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode.UNNECESSARY
-
-import java.math.RoundingMode.ROUNDING_MODE
 import java.math.RoundingMode.HALF_UP
 
 

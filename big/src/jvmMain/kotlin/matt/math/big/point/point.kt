@@ -6,8 +6,11 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import matt.math.BasicPoint
 import matt.math.Point
+import matt.math.big.minus
+import matt.math.big.plus
 import matt.math.big.ser.ApfloatSerializer
 import matt.math.big.ser.ApintSerializer
+import matt.math.big.sq
 import matt.math.big.sqrt
 import matt.math.big.toApfloat
 import org.apfloat.Apfloat
