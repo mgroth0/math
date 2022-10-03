@@ -14,6 +14,7 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.random.Random
 import kotlin.random.Random.Default
+import kotlin.time.Duration
 
 
 const val THOUSAND = 1000.0
@@ -74,6 +75,12 @@ interface Mathable<M: Mathable<M>> {
 }
 
 fun <M: Mathable<M>> List<M>.median() = when {
+  isEmpty()    -> null
+  size.isOdd() -> this[(size - 1)/2]
+  else         -> (this[(size)/2] + this[(size - 1)/2])/2.0
+}
+
+fun List<Duration>.median() = when {
   isEmpty()    -> null
   size.isOdd() -> this[(size - 1)/2]
   else         -> (this[(size)/2] + this[(size - 1)/2])/2.0
