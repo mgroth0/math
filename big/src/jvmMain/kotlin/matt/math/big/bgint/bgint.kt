@@ -1,8 +1,8 @@
 package matt.math.big.bgint
 
-import matt.math.factorial.Factorial
+import matt.math.big.factorial.Factorial
 import matt.math.big.ifactor.Ifactor
-import matt.math.rational.Rational
+import matt.math.big.rational.Rational
 import java.math.BigInteger
 import java.util.Vector
 

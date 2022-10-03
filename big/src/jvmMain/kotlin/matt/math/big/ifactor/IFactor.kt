@@ -5,7 +5,7 @@
 package matt.math.big.ifactor
 
 import matt.math.big.prime.Prime
-import matt.math.rational.Rational
+import matt.math.big.rational.Rational
 import java.math.BigInteger
 import java.util.Collections
 import java.util.Vector

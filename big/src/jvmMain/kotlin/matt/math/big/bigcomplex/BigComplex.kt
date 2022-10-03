@@ -1,7 +1,6 @@
 package matt.math.big.bigcomplex
 
-import matt.math.bgdecimal.BigDecimalMath.scalePrec
-import matt.math.bgdecimal.BigDecimalMath.sqrt
+import matt.math.big.bgdecimal.BigDecimalMath.scalePrec
 import java.math.BigDecimal
 import java.math.MathContext
 
