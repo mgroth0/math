@@ -1,30 +1,10 @@
 package matt.math.mat.dot
 
 import matt.collect.itr.forEachNested
-import matt.math.jmath.hasImag
-import matt.math.jmath.plus
-import matt.math.jmath.times
-import matt.math.jmath.toApfloat
-import org.apfloat.Apcomplex
-import org.apfloat.Apfloat
 import org.jetbrains.kotlinx.multik.ndarray.data.D2
 import org.jetbrains.kotlinx.multik.ndarray.data.MultiArray
 import org.jetbrains.kotlinx.multik.ndarray.data.get
 
-infix fun Array<out Apfloat?>.dotA(other: Array<out Apfloat?>): Apfloat {
-  require(this.size == other.size)
-  var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
-	val first = this[x]
-	val second = other[x]
-	if (first != null && second != null) {
-	  val r = first*second
-	  ee += r
-	}
-  }
-  return ee
-
-}
 
 
 infix fun MultiArray<Float, D2>.dot(other: MultiArray<Float, D2>): Float {
