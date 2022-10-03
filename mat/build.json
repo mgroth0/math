@@ -9,7 +9,7 @@
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
 	  "cfg" :  "commonMainApi",
-	  "path" : ":k:math"
+	  "path" : ":k:math:big"
 	},
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
