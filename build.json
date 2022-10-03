@@ -31,11 +31,6 @@
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
 	  "cfg" :  "jvmMainImplementation",
 	  "key" :  "commons-math"
-	},
-	{
-	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
-	  "cfg" :  "jvmMainApi",
-	  "key" :  "apfloat"
 	}
   ]
 }
