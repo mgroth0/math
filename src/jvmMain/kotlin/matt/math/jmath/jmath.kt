@@ -1,6 +1,5 @@
 package matt.math.jmath
 
-import com.aparapi.internal.exception.AparapiException
 import matt.math.DOUBLE_ONE
 import matt.math.Sides
 import matt.math.bgdecimal.BigDecimalMath
@@ -18,8 +17,6 @@ import java.math.RoundingMode.HALF_UP
 import java.math.RoundingMode.UNNECESSARY
 import kotlin.math.pow
 import kotlin.math.roundToInt
-
-val aparAPIWillBeUsed = AparapiException::class
 
 val ApE: Apfloat = ApfloatMath.exp(Apfloat.ONE.precision(100))
 val e = Math.E
