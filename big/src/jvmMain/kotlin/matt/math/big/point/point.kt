@@ -1,8 +1,12 @@
+@file:UseSerializers(ApfloatSerializer, ApintSerializer)
+
 package matt.math.big.point
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import matt.math.BasicPoint
 import matt.math.Point
+import matt.math.big.ser.ApintSerializer
 import matt.math.big.sqrt
 import matt.math.big.toApfloat
 import org.apfloat.Apfloat

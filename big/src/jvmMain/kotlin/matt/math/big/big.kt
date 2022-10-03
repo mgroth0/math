@@ -3,10 +3,9 @@
 package matt.math.big
 
 import matt.math.DOUBLE_ONE
-import matt.math.bgdecimal.BigDecimalMath
+import matt.math.big.bgdecimal.BigDecimalMath
 import matt.math.getPoisson
-import matt.math.jmath.Ae
-import matt.math.jmath.div
+import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath
 import org.apfloat.Apint

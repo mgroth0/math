@@ -1,8 +1,6 @@
 package matt.math.big.bigcomplex
 
 import matt.math.big.bgdecimal.BigDecimalMath.scalePrec
-import java.math.BigDecimal
-import java.math.MathContext
 
 /** Complex numbers with BigDecimal real and imaginary components
  * @since 2008-10-26

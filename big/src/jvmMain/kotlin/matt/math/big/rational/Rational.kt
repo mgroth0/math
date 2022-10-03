@@ -2,8 +2,8 @@
 
 package matt.math.big.rational
 
-import matt.math.bgdecimal.BigDecimalMath.scalePrec
-import matt.math.bgint.BigIntegerMath.Companion.lcm
+import matt.math.big.bgdecimal.BigDecimalMath.scalePrec
+import matt.math.big.bgint.BigIntegerMath.Companion.lcm
 import matt.math.big.factorial.Factorial
 import matt.math.big.ifactor.Ifactor
 import java.math.BigDecimal

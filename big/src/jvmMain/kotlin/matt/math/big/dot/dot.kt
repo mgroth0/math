@@ -1,6 +1,7 @@
 package matt.math.big.dot
 
 import matt.collect.itr.forEachNested
+import matt.math.big.hasImag
 import matt.math.big.plus
 import matt.math.big.times
 import matt.math.big.toApfloat
