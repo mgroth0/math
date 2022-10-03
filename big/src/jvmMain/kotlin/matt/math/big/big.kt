@@ -12,7 +12,9 @@ import org.apfloat.Apint
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode.UNNECESSARY
+
 import java.math.RoundingMode.ROUNDING_MODE
+import java.math.RoundingMode.HALF_UP
 
 
 val ApE: Apfloat = ApfloatMath.exp(Apfloat.ONE.precision(100))
@@ -64,8 +66,6 @@ val Apcomplex.hasImag: Boolean get() = imag() == Apcomplex.ZERO
 
 fun Asigmoid(x: Apfloat): Apfloat = 1.toApint()/(1.toApint() + Ae.pow(-x))
 fun AsigmoidDerivative(x: Apfloat): Apfloat = Ae.pow(-x).let { it/(1.toApint() + it).sq() }
-
-
 
 
 fun Number.toApfloat() = when (this) {
