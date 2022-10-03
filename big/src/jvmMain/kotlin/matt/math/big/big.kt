@@ -11,8 +11,8 @@ import org.apfloat.ApfloatMath
 import org.apfloat.Apint
 import java.math.BigDecimal
 import java.math.MathContext
-import java.math.RoundingMode.UNNECESSARY
 import java.math.RoundingMode.HALF_UP
+import java.math.RoundingMode.UNNECESSARY
 
 
 val ApE: Apfloat = ApfloatMath.exp(Apfloat.ONE.precision(100))
