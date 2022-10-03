@@ -1,4 +1,4 @@
-package matt.math.prime
+package matt.math.big.prime
 
 import java.math.BigInteger
 import java.util.Vector
@@ -108,7 +108,7 @@ class Prime {
    */
   fun at(i: Int): BigInteger {
 	/* If the current list is too small, increase in intervals
-         * of 5 until the list has at least i elements.
+         * of 5 matt.math.big.ranges.until the list has at least i elements.
          */
 	while (i >= a.size) {
 	  growto(nMax.add(BigInteger("" + 5)))
@@ -125,7 +125,7 @@ class Prime {
    */
   fun pi(n: BigInteger?): BigInteger {
 	/* If the current list is too small, increase in intervals
-         * of 5 until the list has at least i elements.
+         * of 5 matt.math.big.ranges.until the list has at least i elements.
          */
 	growto(n)
 	var r = BigInteger("0")
@@ -146,7 +146,7 @@ class Prime {
 	if (n.compareTo(BigInteger.ONE) <= 0) return a.elementAt(0)
 
 	/* If the currently largest element in the list is too small, increase in intervals
-         * of 5 until the list has at least i elements.
+         * of 5 matt.math.big.ranges.until the list has at least i elements.
          */while (a.lastElement().compareTo(n) <= 0) {
 	  growto(nMax.add(BigInteger("" + 5)))
 	}
@@ -167,7 +167,7 @@ class Prime {
 	if (n.compareTo(BigInteger.ONE) <= 0) return BigInteger.ZERO
 
 	/* If the currently largest element in the list is too small, increase in intervals
-         * of 5 until the list has at least i elements.
+         * of 5 matt.math.big.ranges.until the list has at least i elements.
          */while (a.lastElement().compareTo(n) < 0) growto(nMax.add(BigInteger("" + 5)))
 	for (i in a.indices) if (a.elementAt(i).compareTo(n) >= 0) return a.elementAt(i - 1)
 	return a.lastElement()

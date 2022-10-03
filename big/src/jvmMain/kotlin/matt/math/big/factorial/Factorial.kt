@@ -1,6 +1,6 @@
-package matt.math.factorial
+package matt.math.big.factorial
 
-import matt.math.ifactor.Ifactor
+import matt.math.big.ifactor.Ifactor
 import java.math.BigInteger
 import java.util.Vector
 

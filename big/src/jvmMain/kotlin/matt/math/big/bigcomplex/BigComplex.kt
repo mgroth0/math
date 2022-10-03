@@ -1,4 +1,4 @@
-package matt.math.bigcomplex
+package matt.math.big.bigcomplex
 
 import matt.math.bgdecimal.BigDecimalMath.scalePrec
 import matt.math.bgdecimal.BigDecimalMath.sqrt

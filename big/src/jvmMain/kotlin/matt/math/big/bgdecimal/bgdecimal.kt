@@ -2,13 +2,13 @@
   "VARIABLE_WITH_REDUNDANT_INITIALIZER", "DEPRECATED_IDENTITY_EQUALS"
 )
 
-package matt.math.bgdecimal
+package matt.math.big.bgdecimal
 
-import matt.math.bernoulli.Bernoulli
-import matt.math.bigcomplex.BigComplex
+import matt.lang.err
+import matt.math.big.bernoulli.Bernoulli
+import matt.math.big.bigcomplex.BigComplex
 import matt.math.factorial.Factorial
 import matt.math.rational.Rational
-import matt.lang.err
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext

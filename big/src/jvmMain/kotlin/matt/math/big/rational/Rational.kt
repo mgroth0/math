@@ -1,11 +1,11 @@
 @file:Suppress("unused", "FunctionName", "KDocUnresolvedReference", "RedundantIf", "PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 
-package matt.math.rational
+package matt.math.big.rational
 
 import matt.math.bgdecimal.BigDecimalMath.scalePrec
 import matt.math.bgint.BigIntegerMath.Companion.lcm
-import matt.math.factorial.Factorial
-import matt.math.ifactor.Ifactor
+import matt.math.big.factorial.Factorial
+import matt.math.big.ifactor.Ifactor
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext

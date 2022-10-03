@@ -1,6 +1,6 @@
-package matt.math.bernoulli
+package matt.math.big.bernoulli
 
-import matt.math.rational.Rational
+import matt.math.big.rational.Rational
 import java.math.BigInteger
 import java.util.Vector
 

@@ -1,17 +1,10 @@
-@file:UseSerializers(ApfloatSerializer::class)
-
-package matt.math.point
+package matt.math.big.point
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import matt.math.jmath.minus
-import matt.math.jmath.plus
-import matt.math.ser.ApfloatSerializer
-import matt.math.jmath.sq
-import matt.math.jmath.sqrt
-import matt.math.jmath.toApfloat
 import matt.math.BasicPoint
 import matt.math.Point
+import matt.math.big.sqrt
+import matt.math.big.toApfloat
 import org.apfloat.Apfloat
 
 
@@ -34,6 +27,3 @@ data class APoint(
 	return BasicPoint(x = xDouble, y = yDouble)
   }
 }
-
-
-

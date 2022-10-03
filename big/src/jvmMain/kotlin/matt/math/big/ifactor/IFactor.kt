@@ -2,9 +2,9 @@
   "KDocUnresolvedReference", "SpellCheckingInspection", "PARAMETER_NAME_CHANGED_ON_OVERRIDE"
 )
 
-package matt.math.ifactor
+package matt.math.big.ifactor
 
-import matt.math.prime.Prime
+import matt.math.big.prime.Prime
 import matt.math.rational.Rational
 import java.math.BigInteger
 import java.util.Collections

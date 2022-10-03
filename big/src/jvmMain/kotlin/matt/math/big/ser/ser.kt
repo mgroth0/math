@@ -1,4 +1,4 @@
-package matt.math.ser
+package matt.math.big.ser
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind.STRING
