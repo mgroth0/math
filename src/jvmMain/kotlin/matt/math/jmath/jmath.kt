@@ -25,12 +25,14 @@ fun Float.roundToDecimalPlace(n: Int): Float {
 }
 
 fun Float.sigFigs(n: Int): Float {
+  if (isInfinite() || isNaN()) return this
   var bd = BigDecimal(this.toDouble())
   bd = bd.round(MathContext(n))
   return bd.toFloat()
 }
 
 fun Double.sigFigs(n: Int): Double {
+  if (isInfinite() || isNaN()) return this
   var bd = BigDecimal(this)
   bd = bd.round(MathContext(n))
   return bd.toDouble()
