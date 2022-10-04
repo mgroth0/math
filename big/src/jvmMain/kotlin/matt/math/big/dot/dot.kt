@@ -1,5 +1,6 @@
 package matt.math.big.dot
 
+import matt.collect.itr.YesIUseCollect
 import matt.collect.itr.forEachNested
 import matt.math.big.hasImag
 import matt.math.big.plus
@@ -23,6 +24,9 @@ infix fun Array<out Apfloat?>.dotA(other: Array<out Apfloat?>): Apfloat {
 }
 
 
+fun yesIUseCollect() {
+  println(YesIUseCollect)
+}
 
 infix fun Array<Array<Apfloat?>>.dot(other: Array<Array<Apfloat?>>): Apfloat {
   require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
