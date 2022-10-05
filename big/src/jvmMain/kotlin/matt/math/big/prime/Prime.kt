@@ -7,7 +7,7 @@ import java.util.Vector
  * Prime numbers.
  * The implementation is a very basic computation of the set of all primes
  * on demand, growing infinitely without any defined upper limit.
- * The effects of such scheme are (i) the lookup-times become shorter after
+ * The effects of such scheme are (i) the lookup-matt.math.op.times become shorter after
  * a while as more and more primes have been used and stored. The applications
  * appear to become faster.  (ii) Using the implementation for factorizations
  * may easily require all available memory and stall finally, because indeed

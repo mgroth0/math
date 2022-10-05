@@ -32,7 +32,7 @@ fun MultiArray<Float, D1>.argmaxn(n: Int): IntArray {
 
 private val placeholder = IndexedValue(index = 0, value = 0f)
 
-/*Written by Matt... this one is like 50 times faster!!!*/
+/*Written by Matt... this one is like 50 matt.math.op.times faster!!!*/
 fun MultiArray<Float, D1>.argmaxn2(n: Int): List<Int> {
   require(size >= n)
   val output = MutableList(n) { placeholder }

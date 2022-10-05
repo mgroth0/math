@@ -30,7 +30,7 @@ object BigDecimalMath {
    * The base of the natural logarithm in a predefined accuracy.
    * http://www.cs.arizona.edu/icon/oddsends/e.htm
    * The precision of the predefined constant is one less than
-   * the string's length, taking into account the decimal matt.math.dot.dot.
+   * the string's length, taking into account the decimal matt.math.matt.math.dot.dot.matt.math.dot.dot.
    * static int E_PRECISION = E.length()-1 ;
    */
   var E = BigDecimal(
@@ -449,7 +449,7 @@ object BigDecimalMath {
 		var expxby10 = exp(xby10)
 
 		/* Final powering by 10 means that the relative error of the result
-                 * is 10 times the relative error of the base (First order binomial expansion).
+                 * is 10 matt.math.op.times the relative error of the base (First order binomial expansion).
                  * This looses one digit.
                  */
 		val mc = MathContext(expxby10.precision() - exSc)
@@ -762,7 +762,7 @@ object BigDecimalMath {
 	/** Special cases: x^1=x and x^0 = 1
 	 */
 	return if (n == 1) x else if (n == 0) BigDecimal.ONE else {
-	  /* The relative error in the result is n times the relative error in the input.
+	  /* The relative error in the result is n matt.math.op.times the relative error in the input.
              * The estimation is slightly optimistic due to the integer rounding of the logarithm.
              * Since the standard BigDecimal.pow can only handle positive n, we split the algorithm.
              */
@@ -824,7 +824,7 @@ object BigDecimalMath {
 		var res = BigDecimal(estim)
 
 		/* The error in x^q is q*x^(q-1)*Delta(x).
-                 * The relative error is q*Delta(x)/x, q times the relative error of x.
+                 * The relative error is q*Delta(x)/x, q matt.math.op.times the relative error of x.
                  */
 		val reserr = BigDecimal(
 		  0.5*q.abs().doubleValue()
@@ -1007,7 +1007,7 @@ object BigDecimalMath {
 		  /* 2i factorial */
 		  var ifac = BigInteger.ONE
 
-		  /* The absolute error in the result is the error in x^2/2 which is x times the error in x.
+		  /* The absolute error in the result is the error in x^2/2 which is x matt.math.op.times the error in x.
                      */
 		  val xUlpDbl = 0.5*res.ulp().toDouble()*res.toDouble()
 
@@ -1366,7 +1366,7 @@ object BigDecimalMath {
 		/* 2i factorial */
 		var ifac = BigInteger.ONE
 
-		/* The absolute error in the result is the error in x^2/2 which is x times the error in x.
+		/* The absolute error in the result is the error in x^2/2 which is x matt.math.op.times the error in x.
                  */
 		val xUlpDbl = 0.5*x.ulp().toDouble()*x.toDouble()
 
@@ -1417,7 +1417,7 @@ object BigDecimalMath {
 		val xhalf = x.divide(two)
 		val resul = sinh(xhalf).multiply(cosh(xhalf)).multiply(two)
 		/* The error in the result is set by the error in x itself.
-                 * The first matt.math.point.derivative of sinh(x) is cosh(x), so the absolute error
+                 * The first matt.math.point.matt.math.point.derivative of sinh(x) is cosh(x), so the absolute error
                  * in the result is cosh(x)*errx, and the relative error is coth(x)*errx = errx/tanh(x)
                  */
 		val eps = Math.tanh(x.toDouble())
@@ -1629,7 +1629,7 @@ object BigDecimalMath {
 	  }
 
 	  /* The relative error in the result is the absolute error in the
-             * input variable times the digamma (psi) value at that point.
+             * input variable matt.math.op.times the digamma (psi) value at that point.
              */
 	  val zdbl = z.toDouble()
 	  eps = psi(zdbl)*x.ulp().toDouble()/2.0
@@ -1809,8 +1809,8 @@ object BigDecimalMath {
 	  b = b.divide(Factorial().at(n))
 	  b = b.multiply(BigInteger.ONE.shiftLeft(n - 1))
 
-	  /* to be multiplied by pi^n. Absolute error in the result of pi^n is n times
-             * error in pi times pi^(n-1). Relative error is n*error(pi)/pi, requested by mc.
+	  /* to be multiplied by pi^n. Absolute error in the result of pi^n is n matt.math.op.times
+             * error in pi matt.math.op.times pi^(n-1). Relative error is n*error(pi)/pi, requested by mc.
              * Need one more digit in pi if n=10, two digits if n=100 etc, and add one extra digit.
              */
 	  val mcpi = MathContext(mc.precision + Math.log10(10.0*n).toInt())
@@ -1873,7 +1873,7 @@ object BigDecimalMath {
 	  if (n%4 == 3) {
 		/* since the argument n is at least 7 here, the drop
                  * of the terms is at rather constant pace at least 10^-3, for example
-                 * 0.0018, 0.2e-7, 0.29e-11, 0.74e-15 etc for npr=1,2,3.... We want 2 times these terms
+                 * 0.0018, 0.2e-7, 0.29e-11, 0.74e-15 etc for npr=1,2,3.... We want 2 matt.math.op.times these terms
                  * fall below eps/10.
                  */
 		val kmax = mc.precision/3

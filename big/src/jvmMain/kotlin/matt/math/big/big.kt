@@ -83,7 +83,7 @@ operator fun <A: Apfloat> A.times(other: Number): Apfloat = when (other) {
   is Double  -> this.multiply(other.toApfloat())
   is Float   -> this.multiply(other.toApfloat())
   is Apfloat -> this.multiply(other)
-  else       -> throw RuntimeException("how to do Apfloat.times(${other::class.simpleName})?")
+  else       -> throw RuntimeException("how to do Apfloat.matt.math.op.times(${other::class.simpleName})?")
 }
 
 operator fun <A: Apfloat> A.rem(other: Number): Apfloat = when (other) {

@@ -245,7 +245,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	val prod = Ifactor(0)
 	/* skip the case where 0*something =0, falling thru to the empty representation for 0
          */if (primeexp.size != 0 && oth.primeexp.size != 0) {
-	  /* Cases of 1 times something return something.
+	  /* Cases of 1 matt.math.op.times something return something.
              * Cases of lcm(1, something) return something.
              * Cases of gcd(1, something) return 1.
              */
@@ -588,7 +588,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
   /**
    * The square-free part.
    *
-   * @return the minimum m such that m times this number is a square.
+   * @return the minimum m such that m matt.math.op.times this number is a square.
    * @author Richard J. Mathar
    * @since 2008-10-16
    */
