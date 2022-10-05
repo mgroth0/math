@@ -11,7 +11,7 @@ import org.jetbrains.kotlinx.multik.ndarray.operations.forEachIndexed
 
 /*Written by Matt*/
 fun MultiArray<Float, D1>.argmaxn(n: Int): IntArray {
-  val t = tic("matt.math.argmaxn")
+  val t = tic("argmaxn")
   require(size >= n)
   t.toc(0)
   val input = this.copy().cat(mk.zeros(0)) /*this line has horrible performance*/
