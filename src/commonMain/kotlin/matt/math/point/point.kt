@@ -1,10 +1,10 @@
 package matt.math.point
 
-import matt.math.point.PointDim.X
-import matt.math.point.PointDim.Y
 import kotlinx.serialization.Serializable
 import matt.lang.setAll
-import matt.math.sq
+import matt.math.exp.sq
+import matt.math.point.PointDim.X
+import matt.math.point.PointDim.Y
 import kotlin.math.sqrt
 
 @Serializable

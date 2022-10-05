@@ -1,7 +1,7 @@
 package matt.math.jmath
 
-import matt.math.Sides
-import matt.math.sq
+import matt.math.angle.Sides
+import matt.math.exp.sq
 import org.apache.commons.math3.special.Gamma
 import java.math.BigDecimal
 import java.math.BigInteger

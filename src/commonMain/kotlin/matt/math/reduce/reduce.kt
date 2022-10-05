@@ -1,7 +1,7 @@
 package matt.math.reduce
 
 import matt.math.constant.DOUBLE_ONE
-import matt.math.isOdd
+import matt.math.evenodd.isOdd
 import matt.math.mathable.Mathable
 import kotlin.jvm.JvmName
 import kotlin.math.ln
