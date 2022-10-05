@@ -2,9 +2,9 @@
 
 package matt.math.big
 
-import matt.math.DOUBLE_ONE
 import matt.math.big.bgdecimal.BigDecimalMath
-import matt.math.getPoisson
+import matt.math.constant.DOUBLE_ONE
+import matt.math.rand.poisson.getPoisson
 import org.apfloat.Apcomplex
 import org.apfloat.Apfloat
 import org.apfloat.ApfloatMath
