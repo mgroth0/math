@@ -1,7 +1,7 @@
 package matt.math.mat.argmaxn
 
 import matt.lang.go
-import matt.log.profile.tic
+import matt.log.profile.stopwatch.tic
 import org.jetbrains.kotlinx.multik.api.mk
 import org.jetbrains.kotlinx.multik.api.zeros
 import org.jetbrains.kotlinx.multik.ndarray.data.D1
