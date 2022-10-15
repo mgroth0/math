@@ -52,3 +52,44 @@ interface DoubleWrapper<M: DoubleWrapper<M>>: Mathable<M>, Comparable<M> {
 
 }
 
+
+interface FloatWrapper<M: FloatWrapper<M>>: Mathable<M>, Comparable<M> {
+  override fun compareTo(other: M): Int {
+	return asFloat.compareTo(other.asFloat)
+  }
+
+  fun fromFloat(d: Float): M
+  val asFloat: Float
+  override fun plus(m: M): M {
+	return fromFloat(asFloat + m.asFloat)
+  }
+
+  override fun minus(m: M): M {
+	return fromFloat(asFloat - m.asFloat)
+  }
+
+  override fun div(n: M): M {
+	return fromFloat(asFloat/n.asFloat)
+  }
+
+  override fun times(n: M): M {
+	return fromFloat(asFloat*n.asFloat)
+  }
+
+  override fun plus(m: Number): M {
+	return fromFloat(asFloat + m.toFloat())
+  }
+
+  override fun minus(m: Number): M {
+	return fromFloat(asFloat - m.toFloat())
+  }
+
+  override fun div(n: Number): M {
+	return fromFloat(asFloat/n.toFloat())
+  }
+
+  override fun times(n: Number): M {
+	return fromFloat(asFloat*n.toFloat())
+  }
+
+}
