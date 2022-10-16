@@ -1,17 +1,17 @@
 package matt.math.mathable
 
+
 interface Mathable<M: Mathable<M>> {
+  operator fun div(n: Number): M
+  operator fun div(m: M): Number
+  operator fun times(n: Number): M
   operator fun plus(m: M): M
   operator fun minus(m: M): M
-  operator fun div(n: M): M
-  operator fun times(n: M): M
-  operator fun plus(m: Number): M
-  operator fun minus(m: Number): M
-  operator fun div(n: Number): M
-  operator fun times(n: Number): M
 }
 
-interface DoubleWrapper<M: DoubleWrapper<M>>: Mathable<M>, Comparable<M> {
+interface MathAndComparable<M: MathAndComparable<M>>: Mathable<M>, Comparable<M>
+
+interface DoubleWrapper<M: DoubleWrapper<M>>: MathAndComparable<M> {
   override fun compareTo(other: M): Int {
 	return asDouble.compareTo(other.asDouble)
   }
@@ -26,22 +26,6 @@ interface DoubleWrapper<M: DoubleWrapper<M>>: Mathable<M>, Comparable<M> {
 	return fromDouble(asDouble - m.asDouble)
   }
 
-  override fun div(n: M): M {
-	return fromDouble(asDouble/n.asDouble)
-  }
-
-  override fun times(n: M): M {
-	return fromDouble(asDouble*n.asDouble)
-  }
-
-  override fun plus(m: Number): M {
-	return fromDouble(asDouble + m.toDouble())
-  }
-
-  override fun minus(m: Number): M {
-	return fromDouble(asDouble - m.toDouble())
-  }
-
   override fun div(n: Number): M {
 	return fromDouble(asDouble/n.toDouble())
   }
@@ -50,10 +34,14 @@ interface DoubleWrapper<M: DoubleWrapper<M>>: Mathable<M>, Comparable<M> {
 	return fromDouble(asDouble*n.toDouble())
   }
 
+  override fun div(m: M): Number {
+	return asDouble/m.asDouble
+  }
+
 }
 
 
-interface FloatWrapper<M: FloatWrapper<M>>: Mathable<M>, Comparable<M> {
+interface FloatWrapper<M: FloatWrapper<M>>: MathAndComparable<M> {
   override fun compareTo(other: M): Int {
 	return asFloat.compareTo(other.asFloat)
   }
@@ -68,20 +56,8 @@ interface FloatWrapper<M: FloatWrapper<M>>: Mathable<M>, Comparable<M> {
 	return fromFloat(asFloat - m.asFloat)
   }
 
-  override fun div(n: M): M {
-	return fromFloat(asFloat/n.asFloat)
-  }
-
-  override fun times(n: M): M {
-	return fromFloat(asFloat*n.asFloat)
-  }
-
-  override fun plus(m: Number): M {
-	return fromFloat(asFloat + m.toFloat())
-  }
-
-  override fun minus(m: Number): M {
-	return fromFloat(asFloat - m.toFloat())
+  override fun div(m: M): Number {
+	return asFloat/m.asFloat
   }
 
   override fun div(n: Number): M {
@@ -93,3 +69,5 @@ interface FloatWrapper<M: FloatWrapper<M>>: Mathable<M>, Comparable<M> {
   }
 
 }
+
+
