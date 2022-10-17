@@ -71,3 +71,6 @@ interface FloatWrapper<M: FloatWrapper<M>>: MathAndComparable<M> {
 }
 
 
+data class Fraction<N: Mathable<N>, D: Mathable<D>>(val n: N, val d: D)
+
+operator fun <M: Mathable<M>, D: Mathable<D>> M.div(d: D) = Fraction(n = this, d = d)
