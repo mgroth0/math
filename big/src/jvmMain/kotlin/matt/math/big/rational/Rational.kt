@@ -4,7 +4,7 @@ package matt.math.big.rational
 
 import matt.math.big.bgdecimal.BigDecimalMath.scalePrec
 import matt.math.big.bgint.BigIntegerMath.Companion.lcm
-import matt.math.big.factorial.Factorial
+import matt.math.big.factorial.factorial
 import matt.math.big.ifactor.Ifactor
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -20,7 +20,7 @@ import java.util.Vector
  * @author Richard J. Mathar
  * @since 2006-06-25
  */
-class Rational: Cloneable, Comparable<Rational> {
+class rational: Cloneable, Comparable<rational> {
   /**
    * numerator
    */
@@ -138,7 +138,7 @@ class Rational: Cloneable, Comparable<Rational> {
              */
 	  val clond = Vector<BigInteger>()
 	  for (i in 1 until cfr.size) clond.add(cfr.elementAt(i))
-	  val rec = Rational(clond)
+	  val rec = rational(clond)
 	  a = cfr.firstElement().multiply(rec.a).add(rec.b)
 	  b = rec.a
 	  normalize()
@@ -151,13 +151,13 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since 2008-11-07
    */
-  public override fun clone(): Rational {
+  public override fun clone(): rational {
 	/* protected access means this does not work
          * return new Rational(a.clone(), b.clone()) ;
          */
 	val aclon = BigInteger("" + a)
 	val bclon = BigInteger("" + b)
-	return Rational(aclon, bclon)
+	return rational(aclon, bclon)
   } /* Rational.clone */
 
   /**
@@ -167,12 +167,12 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return the product of this with the val.
    * @author Richard J. Mathar
    */
-  fun multiply(`val`: Rational): Rational {
+  fun multiply(`val`: rational): rational {
 	val num = a!!.multiply(`val`.a)
 	val deno = b!!.multiply(`val`.b)
 	/* Normalization to an coprime format will be done inside
          * the ctor() and is not duplicated here.
-         */return Rational(num, deno)
+         */return rational(num, deno)
   } /* Rational.multiply */
 
   /**
@@ -182,8 +182,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return the product of this with the value.
    * @author Richard J. Mathar
    */
-  fun multiply(`val`: BigInteger?): Rational {
-	val val2 = Rational(`val`, BigInteger.ONE)
+  fun multiply(`val`: BigInteger?): rational {
+	val val2 = rational(`val`, BigInteger.ONE)
 	return multiply(val2)
   } /* Rational.multiply */
 
@@ -194,7 +194,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return the product of this with the value.
    * @author Richard J. Mathar
    */
-  fun multiply(`val`: Int): Rational {
+  fun multiply(`val`: Int): rational {
 	val tmp = BigInteger("" + `val`)
 	return multiply(tmp)
   } /* Rational.multiply */
@@ -207,11 +207,11 @@ class Rational: Cloneable, Comparable<Rational> {
    * If the exponent is 0, the value 1 is returned.
    * @author Richard J. Mathar
    */
-  fun pow(exponent: Int): Rational {
-	if (exponent == 0) return Rational(1, 1)
+  fun pow(exponent: Int): rational {
+	if (exponent == 0) return rational(1, 1)
 	val num = a!!.pow(Math.abs(exponent))
 	val deno = b!!.pow(Math.abs(exponent))
-	return if (exponent > 0) Rational(num, deno) else Rational(deno, num)
+	return if (exponent > 0) rational(num, deno) else rational(deno, num)
   } /* Rational.pow */
 
   /**
@@ -224,7 +224,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @since 2009-05-18
    */
   @Throws(NumberFormatException::class)
-  fun pow(exponent: BigInteger?): Rational {
+  fun pow(exponent: BigInteger?): rational {
 	/* test for overflow */
 	if (exponent!!.compareTo(MAX_INT) == 1) throw NumberFormatException("Exponent $exponent too large.")
 	if (exponent.compareTo(MIN_INT) == -1) throw NumberFormatException("Exponent $exponent too small.")
@@ -242,7 +242,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @since 2009-05-18
    */
   @Throws(NumberFormatException::class)
-  fun root(r: BigInteger?): Rational {
+  fun root(r: BigInteger?): rational {
 	/* test for overflow */
 	if (r!!.compareTo(MAX_INT) == 1) throw NumberFormatException("Root $r too large.")
 	if (r.compareTo(MIN_INT) == -1) throw NumberFormatException("Root $r too small.")
@@ -273,8 +273,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @since 2009-05-18
    */
   @Throws(NumberFormatException::class)
-  fun pow(exponent: Rational): Rational {
-	if (exponent.a!!.compareTo(BigInteger.ZERO) == 0) return Rational(1, 1)
+  fun pow(exponent: rational): rational {
+	if (exponent.a!!.compareTo(BigInteger.ZERO) == 0) return rational(1, 1)
 
 	/* calculate (a/b)^(exponent.a/exponent.b) as ((a/b)^exponent.a)^(1/exponent.b)
          * = tmp^(1/exponent.b)
@@ -290,13 +290,13 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return The value of this/val
    * @author Richard J. Mathar
    */
-  fun divide(`val`: Rational): Rational {
+  fun divide(`val`: rational): rational {
 	if (`val`.compareTo(ZERO) == 0) throw ArithmeticException("Dividing " + toString() + " through zero.")
 	val num = a!!.multiply(`val`.b)
 	val deno = b!!.multiply(`val`.a)
 	/* Reduction to a coprime format is done inside the ctor,
          * and not repeated here.
-         */return Rational(num, deno)
+         */return rational(num, deno)
   } /* Rational.divide */
 
   /**
@@ -306,9 +306,9 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return the value of this/val
    * @author Richard J. Mathar
    */
-  fun divide(`val`: BigInteger): Rational {
+  fun divide(`val`: BigInteger): rational {
 	if (`val`.compareTo(BigInteger.ZERO) == 0) throw ArithmeticException("Dividing " + toString() + " through zero.")
-	val val2 = Rational(`val`, BigInteger.ONE)
+	val val2 = rational(`val`, BigInteger.ONE)
 	return divide(val2)
   } /* Rational.divide */
 
@@ -319,9 +319,9 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return The value of this/val
    * @author Richard J. Mathar
    */
-  fun divide(`val`: Int): Rational {
+  fun divide(`val`: Int): rational {
 	if (`val` == 0) throw ArithmeticException("Dividing " + toString() + " through zero.")
-	val val2 = Rational(`val`, 1)
+	val val2 = rational(`val`, 1)
 	return divide(val2)
   } /* Rational.divide */
 
@@ -332,10 +332,10 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return this+val.
    * @author Richard J. Mathar
    */
-  fun add(`val`: Rational): Rational {
+  fun add(`val`: rational): rational {
 	val num = a!!.multiply(`val`.b).add(b!!.multiply(`val`.a))
 	val deno = b!!.multiply(`val`.b)
-	return Rational(num, deno)
+	return rational(num, deno)
   } /* Rational.add */
 
   /**
@@ -345,8 +345,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return this+val.
    * @author Richard J. Mathar
    */
-  fun add(`val`: BigInteger?): Rational {
-	val val2 = Rational(`val`, BigInteger.ONE)
+  fun add(`val`: BigInteger?): rational {
+	val val2 = rational(`val`, BigInteger.ONE)
 	return add(val2)
   } /* Rational.add */
 
@@ -358,9 +358,9 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since May 26 2010
    */
-  fun add(`val`: Int): Rational {
+  fun add(`val`: Int): rational {
 	val val2 = a!!.add(b!!.multiply(BigInteger("" + `val`)))
-	return Rational(val2, b)
+	return rational(val2, b)
   } /* Rational.add */
 
   /**
@@ -369,8 +369,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return -this.
    * @author Richard J. Mathar
    */
-  fun negate(): Rational {
-	return Rational(a!!.negate(), b)
+  fun negate(): rational {
+	return rational(a!!.negate(), b)
   } /* Rational.negate */
 
   /**
@@ -380,7 +380,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return this - val.
    * @author Richard J. Mathar
    */
-  fun subtract(`val`: Rational): Rational {
+  fun subtract(`val`: rational): rational {
 	val val2 = `val`.negate()
 	return add(val2)
   } /* Rational.subtract */
@@ -392,8 +392,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return this - val.
    * @author Richard J. Mathar
    */
-  fun subtract(`val`: BigInteger?): Rational {
-	val val2 = Rational(`val`, BigInteger.ONE)
+  fun subtract(`val`: BigInteger?): rational {
+	val val2 = rational(`val`, BigInteger.ONE)
 	return subtract(val2)
   } /* Rational.subtract */
 
@@ -404,8 +404,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return this - val.
    * @author Richard J. Mathar
    */
-  fun subtract(`val`: Int): Rational {
-	val val2 = Rational(`val`, 1)
+  fun subtract(`val`: Int): rational {
+	val val2 = rational(`val`, 1)
 	return subtract(val2)
   } /* Rational.subtract */
 
@@ -435,8 +435,8 @@ class Rational: Cloneable, Comparable<Rational> {
    * @return The absolute (non-negative) value of this.
    * @author Richard J. Mathar
    */
-  fun abs(): Rational {
-	return Rational(a!!.abs(), b!!.abs())
+  fun abs(): rational {
+	return rational(a!!.abs(), b!!.abs())
   }
 
   /**
@@ -490,7 +490,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * or greater than val.
    * @author Richard J. Mathar
    */
-  override fun compareTo(`val`: Rational): Int {
+  override fun compareTo(`val`: rational): Int {
 	/* Since we have always kept the denominators positive,
          * simple cross-multiplying works without changing the sign.
          */
@@ -508,7 +508,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    */
   operator fun compareTo(`val`: BigInteger?): Int {
-	val val2 = Rational(`val`, BigInteger.ONE)
+	val val2 = rational(`val`, BigInteger.ONE)
 	return compareTo(val2)
   } /* Rational.compareTo */
 
@@ -594,7 +594,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since 2008-10-19
    */
-  fun max(`val`: Rational): Rational {
+  fun max(`val`: rational): rational {
 	return if (compareTo(`val`) > 0) this else `val`
   } /* Rational.max */
 
@@ -606,7 +606,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since 2008-10-19
    */
-  fun min(`val`: Rational): Rational {
+  fun min(`val`: rational): rational {
 	return if (compareTo(`val`) < 0) this else `val`
   } /* Rational.min */
 
@@ -618,11 +618,11 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since 2008-10-25
    */
-  fun Pochhammer(n: BigInteger): Rational? {
+  fun Pochhammer(n: BigInteger): rational? {
 	return if (n.compareTo(BigInteger.ZERO) < 0) null else if (n.compareTo(BigInteger.ZERO) == 0) ONE else {
 	  /* initialize results with the current value
              */
-	  var res = Rational(a, b)
+	  var res = rational(a, b)
 	  var i = BigInteger.ONE
 	  while (i.compareTo(n) < 0) {
 		res = res.multiply(add(i))
@@ -640,7 +640,7 @@ class Rational: Cloneable, Comparable<Rational> {
    * @author Richard J. Mathar
    * @since 2008-11-13
    */
-  fun Pochhammer(n: Int): Rational? {
+  fun Pochhammer(n: Int): rational? {
 	return Pochhammer(BigInteger("" + n))
   } /* Rational.pochhammer */
 
@@ -725,7 +725,7 @@ class Rational: Cloneable, Comparable<Rational> {
 	  val nRem = a!!.divideAndRemainder(b)
 	  cf.add(nRem[0])
 	  /* recursive call : this = nRem[0]+nRem[1]/b = nRem[0] + 1/(b/nRem[1])
-             */if (nRem[1].signum() != 0) cf.addAll(Rational(b, nRem[1]).cfrac())
+             */if (nRem[1].signum() != 0) cf.addAll(rational(b, nRem[1]).cfrac())
 	}
 	return cf
   } /* Rational.cfrac */
@@ -763,19 +763,19 @@ class Rational: Cloneable, Comparable<Rational> {
 	/**
 	 * The constant 0.
 	 */
-	var ZERO = Rational()
+	var ZERO = rational()
 
 	/**
 	 * The constant 1.
 	 */
-	var ONE = Rational(1, 1)
+	var ONE = rational(1, 1)
 
 	/**
 	 * The constant 1/2
 	 *
 	 * @since 2010-05-25
 	 */
-	var HALF = Rational(1, 2)
+	var HALF = rational(1, 2)
 
 	/**
 	 * binomial (n choose m).
@@ -786,7 +786,7 @@ class Rational: Cloneable, Comparable<Rational> {
 	 * @author Richard J. Mathar
 	 * @since 2006-06-27
 	 */
-	fun binomial(n: Rational, m: BigInteger): Rational {
+	fun binomial(n: rational, m: BigInteger): rational {
 	  if (m.compareTo(BigInteger.ZERO) == 0) return ONE
 	  var bin = n
 	  var i = BigInteger("2")
@@ -806,7 +806,7 @@ class Rational: Cloneable, Comparable<Rational> {
 	 * @author Richard J. Mathar
 	 * @since 2009-05-19
 	 */
-	fun binomial(n: Rational, m: Int): Rational {
+	fun binomial(n: rational, m: Int): rational {
 	  if (m == 0) return ONE
 	  var bin = n
 	  for (i in 2..m) {
@@ -824,11 +824,11 @@ class Rational: Cloneable, Comparable<Rational> {
 	 * @author Richard J. Mathar
 	 * @since 2010-07-18
 	 */
-	fun hankelSymb(n: Rational, k: Int): Rational {
+	fun hankelSymb(n: rational, k: Int): rational {
 	  if (k == 0) return ONE else if (k < 0) throw ArithmeticException("Negative parameter $k")
-	  var nkhalf: Rational? = n.subtract(k).add(HALF)
+	  var nkhalf: rational? = n.subtract(k).add(HALF)
 	  nkhalf = nkhalf!!.Pochhammer(2*k)
-	  val f = Factorial()
+	  val f = factorial()
 	  return nkhalf!!.divide(f.at(k))
 	} /* Rational.binomial */
 
@@ -840,7 +840,7 @@ class Rational: Cloneable, Comparable<Rational> {
 	 * @author Richard J. Mathar
 	 * @since 2012-03-02
 	 */
-	fun lcmDenom(vals: Array<Rational>): BigInteger {
+	fun lcmDenom(vals: Array<rational>): BigInteger {
 	  var l = BigInteger.ONE
 	  for (v in vals.indices) l = lcm(l, vals[v].b)
 	  return l
@@ -857,14 +857,14 @@ class Rational: Cloneable, Comparable<Rational> {
 	 * @author Richard J. Mathar
 	 * @since 2008-10-19
 	 */
-	fun harmonic(n: Int): Rational {
-	  return if (n < 1) Rational(0, 1) else {
+	fun harmonic(n: Int): rational {
+	  return if (n < 1) rational(0, 1) else {
 		/* start with 1 as the result
              */
-		var a = Rational(1, 1)
+		var a = rational(1, 1)
 
 		/* add 1/i for i=2..n
-             */for (i in 2..n) a = a.add(Rational(1, i))
+             */for (i in 2..n) a = a.add(rational(1, i))
 		a
 	  }
 	} /* harmonic */

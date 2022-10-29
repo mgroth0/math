@@ -4,8 +4,8 @@
 
 package matt.math.big.ifactor
 
-import matt.math.big.prime.Prime
-import matt.math.big.rational.Rational
+import matt.math.big.prime.prime
+import matt.math.big.rational.rational
 import java.math.BigInteger
 import java.util.Collections
 import java.util.Vector
@@ -46,7 +46,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	primeexp = Vector()
 	if (number > 1) {
 	  var primindx = 0
-	  val primes = Prime()
+	  val primes = prime()
 	  /* Test division against all primes.
              */while (number > 1) {
 		var ex = 0
@@ -86,7 +86,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	  primeexp.add(0)
 	} else {
 	  var primindx = 0
-	  val primes = Prime()
+	  val primes = prime()
 	  /* Test for division against all primes.
              */while (number.compareTo(BigInteger.ONE) == 1) {
 		var ex = 0
@@ -117,7 +117,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	primeexp = Vector(2*pows.size)
 	if (pows.size > 0) {
 	  n = BigInteger.ONE
-	  val primes = Prime()
+	  val primes = prime()
 	  /* Build the full number by the product of all powers of the primes.
              */for (primindx in pows.indices) {
 		val ex = pows.elementAt(primindx).toInt()
@@ -402,12 +402,12 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
    * @since 2009-05-18
    */
   @Throws(ArithmeticException::class)
-  fun root(r: Int): Rational {
+  fun root(r: Int): rational {
 	return if (r == 0) throw ArithmeticException("Cannot pull zeroth root of " + toString()) else if (r < 0) {
 	  /* a^(-1/b)= 1/(a^(1/b))
              */
 	  val invRoot = root(-r)
-	  Rational.ONE.divide(invRoot)
+	  rational.ONE.divide(invRoot)
 	} else {
 	  val pows = BigInteger.ONE
 	  var i = 0
@@ -421,7 +421,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 		pows.multiply(BigInteger("" + primeexp.elementAt(i)).pow(ex/r))
 		i += 2
 	  }
-	  /* convert result to a Rational; unfortunately this will loose the prime factorization */Rational(pows)
+	  /* convert result to a Rational; unfortunately this will loose the prime factorization */rational(pows)
 	}
   } /* Ifactor.root */
 

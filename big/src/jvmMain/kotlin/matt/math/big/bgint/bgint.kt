@@ -1,8 +1,8 @@
 package matt.math.big.bgint
 
-import matt.math.big.factorial.Factorial
+import matt.math.big.factorial.factorial
 import matt.math.big.ifactor.Ifactor
-import matt.math.big.rational.Rational
+import matt.math.big.rational.rational
 import java.math.BigInteger
 import java.util.Vector
 
@@ -420,7 +420,7 @@ class BigIntegerMath {
 	 * @since 2010-08-28
 	 */
 	@Throws(ArithmeticException::class)
-	fun solve(A: Array<Array<BigInteger>>, rhs: Array<BigInteger?>): Array<Rational?> {
+	fun solve(A: Array<Array<BigInteger>>, rhs: Array<BigInteger?>): Array<rational?> {
 	  val rL = A.size
 	  if (rL == 0) throw ArithmeticException("zero row count in matrix")
 
@@ -431,10 +431,10 @@ class BigIntegerMath {
 
 	  /* Gauss elimination
          */
-	  val x = arrayOfNulls<Rational>(rL)
+	  val x = arrayOfNulls<rational>(rL)
 
 	  /* copy of r.h.s ito a mutable Rationalright hand side
-         */for (c in 0 until cL) x[c] = Rational(rhs[c])
+         */for (c in 0 until cL) x[c] = rational(rhs[c])
 
 	  /* Create zeros downwards column c  by linear combination of row c and row r.
          */for (c in 0 until cL - 1) {
@@ -518,16 +518,16 @@ class BigIntegerMath {
 	 * [P. L. Butzer et al, Num. Funct. Anal. Opt. 10 (5)( 1989) 419-488](http://dx.doi.org/10.1080/01630568908816313)
 	 * @since 2009-08-06
 	 */
-	fun centrlFactNumt(n: Int, k: Int): Rational {
-	  return if (k > n || k < 0 || k%2 != n%2) Rational.ZERO else if (k == n) Rational.ONE else {
+	fun centrlFactNumt(n: Int, k: Int): rational {
+	  return if (k > n || k < 0 || k%2 != n%2) rational.ZERO else if (k == n) rational.ONE else {
 		/* Proposition 6.2.6 */
-		val f = Factorial()
-		var jsum = Rational(0, 1)
+		val f = factorial()
+		var jsum = rational(0, 1)
 		val kprime = n - k
 		for (j in 0..kprime) {
-		  var nusum = Rational(0, 1)
+		  var nusum = rational(0, 1)
 		  for (nu in 0..j) {
-			var t = Rational(j - 2*nu, 2)
+			var t = rational(j - 2*nu, 2)
 			t = t.pow(kprime + j)
 			t = t.multiply(binomial(j, nu))
 			nusum = if (nu%2 != 0) nusum.subtract(t) else nusum.add(t)
@@ -550,11 +550,11 @@ class BigIntegerMath {
 	 * [P. L. Butzer et al, Num. Funct. Anal. Opt. 10 (5)( 1989) 419-488](http://dx.doi.org/10.1080/01630568908816313)
 	 * @since 2009-08-06
 	 */
-	fun centrlFactNumT(n: Int, k: Int): Rational {
-	  return if (k > n || k < 0 || k%2 != n%2) Rational.ZERO else if (k == n) Rational.ONE else {
+	fun centrlFactNumT(n: Int, k: Int): rational {
+	  return if (k > n || k < 0 || k%2 != n%2) rational.ZERO else if (k == n) rational.ONE else {
 		/* Proposition 2.1 */
 		centrlFactNumT(n - 2, k - 2)
-			.add(centrlFactNumT(n - 2, k).multiply(Rational(k*k, 4)))
+			.add(centrlFactNumT(n - 2, k).multiply(rational(k*k, 4)))
 	  }
 	} /* CentralFactNumT */
   }

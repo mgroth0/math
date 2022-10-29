@@ -9,7 +9,7 @@ import java.util.Vector
  * @since 2012-02-15 Storage of the values based on Ifactor, not BigInteger.
  * @author Richard J. Mathar
  */
-class Factorial {
+class factorial {
   /** Compute the factorial of the non-negative integer.
    * @param n the argument to the factorial, non-negative.
    * @return the factorial of n.

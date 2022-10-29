@@ -16,7 +16,7 @@ import java.util.Vector
  * @author Richard J. Mathar
  * @since 2006-08-11
  */
-class Prime {
+class prime {
   /**
    * Test if a number is a prime.
    *
@@ -222,7 +222,7 @@ class Prime {
 	 */
 	@JvmStatic
 	fun main(args: Array<String>) {
-	  val a = Prime()
+	  val a = prime()
 	  val n = args[0].toInt()
 	  if (n >= 1) {
 		if (n >= 2) println("prime(" + (n - 1) + ") = " + a.at(n - 1))

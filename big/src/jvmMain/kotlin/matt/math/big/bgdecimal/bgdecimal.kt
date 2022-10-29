@@ -5,10 +5,10 @@
 package matt.math.big.bgdecimal
 
 import matt.lang.err
-import matt.math.big.bernoulli.Bernoulli
-import matt.math.big.bigcomplex.BigComplex
-import matt.math.big.factorial.Factorial
-import matt.math.big.rational.Rational
+import matt.math.big.bernoulli.bernoulli
+import matt.math.big.bigcomplex.bigcomplex
+import matt.math.big.factorial.factorial
+import matt.math.big.rational.rational
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
@@ -590,8 +590,8 @@ object BigDecimalMath {
              * already found in mc
              */
 	  val eps = prec2err(1.098, mc.precision)/kmax
-	  val r = Rational(7153, 524288)
-	  var pk = Rational(7153, 524288)
+	  val r = rational(7153, 524288)
+	  var pk = rational(7153, 524288)
 	  var k = 1
 	  while (true) {
 		val tmp = pk.divide(k)
@@ -621,8 +621,8 @@ object BigDecimalMath {
              * already found in mc
              */
 	  val eps = prec2err(1.6, mc.precision)/kmax
-	  val r = Rational(759, 16384)
-	  var pk = Rational(759, 16384)
+	  val r = rational(759, 16384)
+	  var pk = rational(759, 16384)
 	  var k = 1
 	  while (true) {
 		val tmp = pk.divide(k)
@@ -650,8 +650,8 @@ object BigDecimalMath {
 	  /* log7 is roughly 1.9, so absolute and relative error are the same.
              */
 	  val eps = prec2err(1.9, mc.precision)/kmax
-	  val r = Rational(1, 8)
-	  var pk = Rational(1, 8)
+	  val r = rational(1, 8)
+	  var pk = rational(1, 8)
 	  var k = 1
 	  while (true) {
 		val tmp = pk.divide(k)
@@ -695,11 +695,11 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2009-08-09
    */
-  fun log(r: Rational, mc: MathContext): BigDecimal {
+  fun log(r: rational, mc: MathContext): BigDecimal {
 	/* the value is undefined if x is negative.
          */
-	return if (r.compareTo(Rational.ZERO) <= 0) throw ArithmeticException("Cannot take log of negative $r") else if (r.compareTo(
-		  Rational.ONE
+	return if (r.compareTo(rational.ZERO) <= 0) throw ArithmeticException("Cannot take log of negative $r") else if (r.compareTo(
+		  rational.ONE
 		) == 0) BigDecimal.ZERO else {
 
 	  /* log(r+epsr) = log(r)+epsr/r. Convert the precision to an absolute error in the result.
@@ -789,7 +789,7 @@ object BigDecimalMath {
 	 * is in the range of the standard integers. This might, however, be
 	 * implemented to decompose larger powers into cascaded calls to smaller ones.
 	 */
-	return if (n.compareTo(Rational.MAX_INT) > 0 || n.compareTo(Rational.MIN_INT) < 0) throw ProviderException("Not implemented: big power $n") else powRound(
+	return if (n.compareTo(rational.MAX_INT) > 0 || n.compareTo(rational.MIN_INT) < 0) throw ProviderException("Not implemented: big power $n") else powRound(
 	  x,
 	  n.toInt()
 	)
@@ -806,7 +806,7 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-05-26
    */
-  fun powRound(x: BigDecimal, q: Rational): BigDecimal {
+  fun powRound(x: BigDecimal, q: rational): BigDecimal {
 	/** Special cases: x^1=x and x^0 = 1
 	 */
 	if (q.compareTo(BigInteger.ONE) == 0) return x else if (q.signum() == 0) return BigDecimal.ONE else if (q.isInteger) {
@@ -1069,7 +1069,7 @@ object BigDecimalMath {
 
 		/* x^(2i+1) */
 		var xpowi: BigDecimal? = xhighpr
-		val b = Bernoulli()
+		val b = bernoulli()
 
 		/* 2^(2i) */
 		var fourn = BigInteger("4")
@@ -1077,7 +1077,7 @@ object BigDecimalMath {
 		var fac = BigInteger("2")
 		var i = 2
 		while (true) {
-		  var f: Rational = b.at(2*i).abs()
+		  var f: rational = b.at(2*i).abs()
 		  fourn = fourn.shiftLeft(2)
 		  fac = fac.multiply(BigInteger("" + 2*i)).multiply(BigInteger("" + (2*i - 1)))
 		  f = f.multiply(fourn).multiply(fourn.subtract(BigInteger.ONE)).divide(fac)
@@ -1123,7 +1123,7 @@ object BigDecimalMath {
 
 	  /* x^(2i-1) */
 	  var xpowi: BigDecimal? = xhighpr
-	  val b = Bernoulli()
+	  val b = bernoulli()
 
 	  /* 2^(2i) */
 	  var fourn = BigInteger("4")
@@ -1131,7 +1131,7 @@ object BigDecimalMath {
 	  var fac = BigInteger.ONE
 	  var i = 1
 	  while (true) {
-		var f: Rational = b.at(2*i)
+		var f: rational = b.at(2*i)
 		fac = fac.multiply(BigInteger("" + 2*i)).multiply(BigInteger("" + (2*i - 1)))
 		f = f.multiply(fourn).divide(fac)
 		val c: BigDecimal = multiplyRound(xpowi!!, f)
@@ -1647,11 +1647,11 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-05-26
    */
-  fun Gamma(q: Rational, mc: MathContext): BigDecimal {
+  fun Gamma(q: rational, mc: MathContext): BigDecimal {
 	return if (q.isBigInteger) {
-	  if (q.compareTo(Rational.ZERO) <= 0) throw ArithmeticException("Gamma at $q") else {
+	  if (q.compareTo(rational.ZERO) <= 0) throw ArithmeticException("Gamma at $q") else {
 		/* Gamma(n) = (n-1)! */
-		val f = Factorial()
+		val f = factorial()
 		val g: BigInteger = f.at(q.trunc()!!.toInt() - 1)
 		scalePrec(BigDecimal(g), mc)
 	  }
@@ -1659,18 +1659,18 @@ object BigDecimalMath {
 	  /* half integer cases which are related to sqrt(pi)
              */
 	  val p = sqrt(pi(mc))
-	  if (q.compareTo(Rational.ZERO) >= 0) {
-		var pro = Rational.ONE
+	  if (q.compareTo(rational.ZERO) >= 0) {
+		var pro = rational.ONE
 		var f = q.subtract(1)
-		while (f.compareTo(Rational.ZERO) > 0) {
+		while (f.compareTo(rational.ZERO) > 0) {
 		  pro = pro.multiply(f)
 		  f = f.subtract(1)
 		}
 		multiplyRound(p, pro)
 	  } else {
-		var pro = Rational.ONE
+		var pro = rational.ONE
 		var f = q
-		while (f.compareTo(Rational.ZERO) < 0) {
+		while (f.compareTo(rational.ZERO) < 0) {
 		  pro = pro.divide(f)
 		  f = f.add(1)
 		}
@@ -1805,8 +1805,8 @@ object BigDecimalMath {
 	return if (n%2 == 0) {
 	  /* Even indices. Abramowitz-Stegun 23.2.16. Start with 2^(n-1)*B(n)/n!
              */
-	  var b: Rational = Bernoulli().at(n).abs()
-	  b = b.divide(Factorial().at(n))
+	  var b: rational = bernoulli().at(n).abs()
+	  b = b.divide(factorial().at(n))
 	  b = b.multiply(BigInteger.ONE.shiftLeft(n - 1))
 
 	  /* to be multiplied by pi^n. Absolute error in the result of pi^n is n matt.math.op.times
@@ -1846,11 +1846,11 @@ object BigDecimalMath {
 	} else {
 	  /* Cohen et al Exp Math 1 (1) (1992) 25
              */
-	  var betsum = Rational()
-	  val bern = Bernoulli()
-	  val fact = Factorial()
+	  var betsum = rational()
+	  val bern = bernoulli()
+	  val fact = factorial()
 	  for (npr in 0..(n + 1)/2) {
-		var b: Rational = bern.at(2*npr).multiply(bern.at(n + 1 - 2*npr))
+		var b: rational = bern.at(2*npr).multiply(bern.at(n + 1 - 2*npr))
 		b = b.divide(fact.at(2*npr)).divide(fact.at(n + 1 - 2*npr))
 		b = b.multiply(1 - 2*npr)
 		betsum = if (npr%2 == 0) betsum.add(b) else betsum.subtract(b)
@@ -2118,9 +2118,9 @@ object BigDecimalMath {
 	var res = BigDecimal.ZERO
 	var c = 0
 	while (true) {
-	  var r = Rational()
+	  var r = rational()
 	  for (k in 0..7) {
-		var tmp = Rational(BigInteger("" + a[k]), BigInteger("" + (1 + 8*c + k)).pow(n))
+		var tmp = rational(BigInteger("" + a[k]), BigInteger("" + (1 + 8*c + k)).pow(n))
 		/* floor( (pk+p)/2)
                  */
 		val pk1h = p*(2 + 8*c + k)/2
@@ -2144,12 +2144,12 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2012-03-09
    */
-  fun toRational(x: BigDecimal): Rational {
+  fun toRational(x: BigDecimal): rational {
 	/* represent the floating point number by the exact rational
          * variant of the current truncated representation
          */
 	val s = x.scale()
-	return if (s > 0) Rational(x.unscaledValue(), BigInteger.TEN.pow(s)) else Rational(
+	return if (s > 0) rational(x.unscaledValue(), BigInteger.TEN.pow(s)) else rational(
 	  x.unscaledValue()
 		  .multiply(BigInteger.TEN.pow(-s)), BigInteger.ONE
 	)
@@ -2210,9 +2210,9 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun addRound(x: BigComplex, y: BigDecimal?): BigComplex {
+  fun addRound(x: bigcomplex, y: BigDecimal?): bigcomplex {
 	val R: BigDecimal = addRound(x.re, y!!)
-	return BigComplex(R, x.im)
+	return bigcomplex(R, x.im)
   } /* addRound */
 
   /**
@@ -2224,10 +2224,10 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun addRound(x: BigComplex, y: BigComplex): BigComplex {
+  fun addRound(x: bigcomplex, y: bigcomplex): bigcomplex {
 	val R: BigDecimal = addRound(x.re, y.re)
 	val I: BigDecimal = addRound(x.im, y.im)
-	return BigComplex(R, I)
+	return bigcomplex(R, I)
   } /* addRound */
 
   /**
@@ -2256,10 +2256,10 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun subtractRound(x: BigComplex, y: BigComplex): BigComplex {
+  fun subtractRound(x: bigcomplex, y: bigcomplex): bigcomplex {
 	val R: BigDecimal = subtractRound(x.re, y.re)
 	val I: BigDecimal = subtractRound(x.im, y.im)
-	return BigComplex(R, I)
+	return bigcomplex(R, I)
   } /* subtractRound */
 
   /**
@@ -2289,10 +2289,10 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun multiplyRound(x: BigComplex, y: BigDecimal?): BigComplex {
+  fun multiplyRound(x: bigcomplex, y: BigDecimal?): bigcomplex {
 	val R: BigDecimal = multiplyRound(x.re, y!!)
 	val I: BigDecimal = multiplyRound(x.im, y)
-	return BigComplex(R, I)
+	return bigcomplex(R, I)
   } /* multiplyRound */
 
   /**
@@ -2304,10 +2304,10 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun multiplyRound(x: BigComplex, y: BigComplex): BigComplex {
+  fun multiplyRound(x: bigcomplex, y: bigcomplex): bigcomplex {
 	val R: BigDecimal = subtractRound(multiplyRound(x.re, y.re), multiplyRound(x.im, y.im))
 	val I: BigDecimal = addRound(multiplyRound(x.re, y.im), multiplyRound(x.im, y.re))
-	return BigComplex(R, I)
+	return bigcomplex(R, I)
   } /* multiplyRound */
 
   /**
@@ -2319,7 +2319,7 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2009-07-30
    */
-  fun multiplyRound(x: BigDecimal, f: Rational): BigDecimal {
+  fun multiplyRound(x: BigDecimal, f: rational): BigDecimal {
 	return if (f.compareTo(BigInteger.ZERO) == 0) BigDecimal.ZERO else {
 	  /* Convert the rational value with two digits of extra precision
              */
@@ -2393,17 +2393,17 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun invertRound(z: BigComplex): BigComplex {
+  fun invertRound(z: bigcomplex): bigcomplex {
 	return if (z.im.compareTo(BigDecimal.ZERO) === 0) {
 	  /* In this case with vanishing Im(x), the result is  simply 1/Re z.
              */
 	  val mc = MathContext(z.re.precision())
-	  BigComplex(BigDecimal.ONE.divide(z.re, mc))
+	  bigcomplex(BigDecimal.ONE.divide(z.re, mc))
 	} else if (z.re.compareTo(BigDecimal.ZERO) === 0) {
 	  /* In this case with vanishing Re(z), the result is  simply -i/Im z
              */
 	  val mc = MathContext(z.im.precision())
-	  BigComplex(BigDecimal.ZERO, BigDecimal.ONE.divide(z.im, mc).negate())
+	  bigcomplex(BigDecimal.ZERO, BigDecimal.ONE.divide(z.im, mc).negate())
 	} else {
 	  /* 1/(x.re+I*x.im) = 1/(x.re+x.im^2/x.re) - I /(x.im +x.re^2/x.im)
              */
@@ -2413,7 +2413,7 @@ object BigDecimalMath {
 	  R = BigDecimal.ONE.divide(R, mc)
 	  mc = MathContext(1 + I.precision())
 	  I = BigDecimal.ONE.divide(I, mc)
-	  BigComplex(R, I.negate())
+	  bigcomplex(R, I.negate())
 	}
   }
 
@@ -2426,7 +2426,7 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2010-07-19
    */
-  fun divideRound(x: BigComplex, y: BigComplex): BigComplex {
+  fun divideRound(x: bigcomplex, y: bigcomplex): bigcomplex {
 	return multiplyRound(x, invertRound(y))
   }
 
@@ -2487,21 +2487,21 @@ object BigDecimalMath {
    * @author Richard J. Mathar
    * @since 2012-03-01
    */
-  fun divideRound(n: BigInteger?, x: BigComplex): BigComplex {
+  fun divideRound(n: BigInteger?, x: bigcomplex): bigcomplex {
 	/* catch case of real-valued denominator first
          */
-	if (x.im.compareTo(BigDecimal.ZERO) === 0) return BigComplex(
+	if (x.im.compareTo(BigDecimal.ZERO) === 0) return bigcomplex(
 	  divideRound(n, x.re),
 	  BigDecimal.ZERO
 	) else if (x.re.compareTo(
 		  BigDecimal.ZERO
-		) === 0) return BigComplex(BigDecimal.ZERO, divideRound(n, x.im).negate())
-	val z: BigComplex = invertRound(x)
+		) === 0) return bigcomplex(BigDecimal.ZERO, divideRound(n, x.im).negate())
+	val z: bigcomplex = invertRound(x)
 	/* n/(x+iy) = nx/(x^2+y^2) -nyi/(x^2+y^2)
          */
 	val repart: BigDecimal = multiplyRound(z.re, n!!)
 	val impart: BigDecimal = multiplyRound(z.im, n)
-	return BigComplex(repart, impart)
+	return bigcomplex(repart, impart)
   } /* divideRound */
 
   /**
@@ -2542,8 +2542,8 @@ object BigDecimalMath {
    * @return The same value as the input but with increased (pseudo) precision.
    * @author Richard J. Mathar
    */
-  fun scalePrec(x: BigComplex, d: Int): BigComplex {
-	return BigComplex(scalePrec(x.re, d), scalePrec(x.im, d))
+  fun scalePrec(x: bigcomplex, d: Int): bigcomplex {
+	return bigcomplex(scalePrec(x.re, d), scalePrec(x.im, d))
   }
 
   /**

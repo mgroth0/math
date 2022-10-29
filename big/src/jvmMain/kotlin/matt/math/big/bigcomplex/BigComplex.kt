@@ -9,7 +9,7 @@ import java.math.MathContext
  * @since 2008-10-26
  * @author Richard J. Mathar
  */
-class BigComplex {
+class bigcomplex {
   /** real part
    */
   var re: BigDecimal
@@ -61,13 +61,13 @@ class BigComplex {
    * @return This multiplied by oth
    * @since 2010-07-19 implemented with 3 multiplications and 5 additions/subtractions
    */
-  fun multiply(oth: BigComplex, mc: MathContext?): BigComplex {
+  fun multiply(oth: bigcomplex, mc: MathContext?): bigcomplex {
 	val a = re.add(im).multiply(oth.re)
 	val b = oth.re.add(oth.im).multiply(im)
 	val c = oth.im.subtract(oth.re).multiply(re)
 	val x = a.subtract(b, mc)
 	val y = a.add(c, mc)
-	return BigComplex(x, y)
+	return bigcomplex(x, y)
   }
 
   /** Add a BigDecimal
@@ -75,9 +75,9 @@ class BigComplex {
    * @return this added to oth
    * @author Richard J. Mathar
    */
-  fun add(oth: BigDecimal?): BigComplex {
+  fun add(oth: BigDecimal?): bigcomplex {
 	val x = re.add(oth)
-	return BigComplex(x, im)
+	return bigcomplex(x, im)
   }
 
   /** Subtract another BigComplex
@@ -85,18 +85,18 @@ class BigComplex {
    * @return this minus oth
    * @author Richard J. Mathar
    */
-  fun subtract(oth: BigComplex): BigComplex {
+  fun subtract(oth: bigcomplex): bigcomplex {
 	val x = re.subtract(oth.re)
 	val y = im.subtract(oth.im)
-	return BigComplex(x, y)
+	return bigcomplex(x, y)
   }
 
   /** Complex-conjugation
    * @return the complex conjugate of this.
    * @author Richard J. Mathar
    */
-  fun conj(): BigComplex {
-	return BigComplex(re, im.negate())
+  fun conj(): bigcomplex {
+	return bigcomplex(re, im.negate())
   }
 
   /** The absolute value squared.
@@ -128,19 +128,19 @@ class BigComplex {
    * @since 2008-10-27
    * @author Richard J. Mathar
    */
-  fun sqrt(mc: MathContext?): BigComplex {
+  fun sqrt(mc: MathContext?): bigcomplex {
 	val half = BigDecimal("2")
 	/* compute l=sqrt(re^2+im^2), then u=sqrt((l+re)/2)
          * and v= +- sqrt((l-re)/2 as the new real and imaginary parts.
          */
 	val l = abs(mc)
-	if (l.compareTo(BigDecimal.ZERO) == 0) return BigComplex(
+	if (l.compareTo(BigDecimal.ZERO) == 0) return bigcomplex(
 	  scalePrec(BigDecimal.ZERO, mc!!),
 	  scalePrec(BigDecimal.ZERO, mc)
 	)
 	val u = sqrt(l.add(re).divide(half, mc), mc!!)
 	val v = sqrt(l.subtract(re).divide(half, mc), mc)
-	return if (im.compareTo(BigDecimal.ZERO) >= 0) BigComplex(u, v) else BigComplex(u, v.negate())
+	return if (im.compareTo(BigDecimal.ZERO) >= 0) bigcomplex(u, v) else bigcomplex(u, v.negate())
   }
 
   /** The inverse of this.
@@ -148,9 +148,9 @@ class BigComplex {
    * @return 1/this
    * @author Richard J. Mathar
    */
-  fun inverse(mc: MathContext?): BigComplex {
+  fun inverse(mc: MathContext?): bigcomplex {
 	val hyp = norm()
-	/* 1/(x+iy)= (x-iy)/(x^2+y^2 */return BigComplex(re.divide(hyp, mc), im.divide(hyp, mc).negate())
+	/* 1/(x+iy)= (x-iy)/(x^2+y^2 */return bigcomplex(re.divide(hyp, mc), im.divide(hyp, mc).negate())
   }
 
   /** Divide through another BigComplex number.
@@ -159,7 +159,7 @@ class BigComplex {
    * @return this/oth
    * @author Richard J. Mathar
    */
-  fun divide(oth: BigComplex, mc: MathContext?): BigComplex {
+  fun divide(oth: bigcomplex, mc: MathContext?): bigcomplex {
 	/* lazy implementation: (x+iy)/(a+ib)= (x+iy)* 1/(a+ib) */
 	return multiply(oth.inverse(mc), mc)
   }
@@ -184,6 +184,6 @@ class BigComplex {
   companion object {
 	/** The constant that equals zero
 	 */
-	val ZERO = BigComplex(BigDecimal.ZERO, BigDecimal.ZERO)
+	val ZERO = bigcomplex(BigDecimal.ZERO, BigDecimal.ZERO)
   }
 } /* BigComplex */
