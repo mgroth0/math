@@ -20,3 +20,5 @@ fun FloatArray.argmaxn(n: Int): IntArray {
   //  t.toc(3)
   return output
 }
+
+fun degreesToRadians(degrees: Double) = degrees*kotlin.math.PI/180
