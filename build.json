@@ -1,5 +1,7 @@
 {
-  "type" :         "matt.mstruct.bj.MultiPlatformModule", "jvm": {}, "js": "LIB",
+  "type" :         "matt.mstruct.bj.MultiPlatformModule",
+  "jvm" :          {},
+  "js" :           "LIB",
   "dependencies" : [
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonLibDependency",
@@ -11,7 +13,11 @@
 	  "cfg" :  "jsMainApi",
 	  "key" :  "kt-stdlib-js"
 	},
-
+	{
+	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
+	  "cfg" :  "commonMainApi",
+	  "path" : ":k:lang"
+	},
 	{
 	  "type" : "matt.mstruct.bj.BuildJsonProjectDependency",
 	  "cfg" :  "commonMainApi",
