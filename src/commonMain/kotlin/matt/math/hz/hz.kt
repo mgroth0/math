@@ -2,9 +2,9 @@ package matt.math.hz
 
 import kotlinx.serialization.Serializable
 import matt.math.mathable.DoubleWrapper
+import matt.model.num.NumberWrapper
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration.Companion.seconds
-import matt.model.num.NumberWrapper
 
 @Serializable @JvmInline value class Hz(override val asNumber: Double): DoubleWrapper<Hz>, NumberWrapper {
   override val asDouble get() = asNumber
@@ -13,7 +13,7 @@ import matt.model.num.NumberWrapper
   }
 
   override fun toString(): String {
-	return "${asNumber}matt.math.hz.Hz"
+	return "${asNumber}Hz"
   }
 
 
