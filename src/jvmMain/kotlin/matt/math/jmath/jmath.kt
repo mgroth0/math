@@ -17,11 +17,9 @@ val PI = Math.PI
 val PIFloat = PI.toFloat()
 
 
-
-
 fun Float.roundToDecimalPlace(n: Int): Float {
   val factor = 10.0f.pow(n)
-  return (factor*this).roundToInt() / factor
+  return (factor*this).roundToInt()/factor
 }
 
 fun Float.sigFigs(n: Int): Float {
@@ -37,8 +35,6 @@ fun Double.sigFigs(n: Int): Double {
   bd = bd.round(MathContext(n))
   return bd.toDouble()
 }
-
-
 
 
 fun Int.simpleFactorial(): BigInteger {
@@ -57,16 +53,8 @@ fun Int.simpleFactorial(): BigInteger {
 }
 
 
-
-
-
-
 fun sigmoid(x: Double): Double = 1/(1 + e.pow(-x))
 fun sigmoidDerivative(x: Double): Double = e.pow(-x).let { it/(1 + it).sq() }
-
-
-
-
 
 
 fun dirAndHypToAdjAndOpp(dirInDegrees: Double, hyp: Double): Sides {
@@ -99,3 +87,5 @@ fun BigDecimal.toSignificantFigures(significantFigures: Int): BigDecimal {
   val s = String.format("%." + significantFigures + "G", this)
   return BigDecimal(s)
 }
+
+fun Double.decimalOrScientificNotation() = String.format("%.3G", this)
