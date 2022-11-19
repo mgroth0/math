@@ -1,8 +1,8 @@
 package matt.math.index
 
 import kotlinx.serialization.Serializable
-import matt.model.convert.Converter
-import matt.model.mathable.IntWrapper
+import matt.model.op.convert.Converter
+import matt.model.data.mathable.IntWrapper
 
 
 /*should be a value class*/

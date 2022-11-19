@@ -1,8 +1,8 @@
 package matt.math.hz
 
 import kotlinx.serialization.Serializable
-import matt.model.mathable.DoubleWrapper
-import matt.model.num.NumberWrapper
+import matt.model.data.mathable.DoubleWrapper
+import matt.model.data.num.NumberWrapper
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration.Companion.seconds
 
