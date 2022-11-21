@@ -1,7 +1,10 @@
 package matt.math.angle
 
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.random.Random
+
+const val HALF_PI = PI/2
 
 fun orth(degrees: Float): Float {
   require(degrees in 0.0f..180.0f)
@@ -18,9 +21,6 @@ fun orth(degrees: Double): Double {
 fun randomAngleInDegrees() = Random.nextDouble()*360.0
 
 
-
-
-
 /**
  * Shortest distance (angular) between two angles.
  * It will be in range [0, 180].
@@ -31,3 +31,4 @@ fun angularDifference(alpha: Double, beta: Double): Double {
 }
 
 data class Sides(val adj: Double, val opp: Double)
+
