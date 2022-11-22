@@ -3,6 +3,8 @@ package matt.math.hz
 import kotlinx.serialization.Serializable
 import matt.model.data.mathable.DoubleWrapper
 import matt.model.data.num.NumberWrapper
+import matt.model.data.sensemod.Phase
+import matt.model.data.sensemod.WaveForm
 import kotlin.jvm.JvmInline
 import kotlin.time.Duration.Companion.seconds
 
@@ -21,3 +23,17 @@ val Number.hz get() = Hz(toDouble())
 
   val interval get() = (1.seconds/asNumber)
 }
+
+
+@Serializable
+class WaveConfig(
+  val carrierCfg: SubWaveConfig,
+  val modulatorCfg: SubWaveConfig?
+)
+
+@Serializable
+class SubWaveConfig(
+  val form: WaveForm,
+  val phase: Phase,
+  val freq: Hz
+)
