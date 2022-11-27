@@ -26,15 +26,16 @@ val Number.hz get() = Hz(toDouble())
 
 
 @Serializable
-class WaveConfig(
+data class WaveConfig(
   val carrierCfg: SubWaveConfig,
   val modulatorCfg: SubWaveConfig?,
   val enabled: Boolean /*temp stupid*/
 )
 
 @Serializable
-class SubWaveConfig(
+data class SubWaveConfig(
   val form: WaveForm,
   val phase: Phase,
-  val freq: Hz
+  val freq: Hz,
+  val minAnalog: Int = 0
 )
