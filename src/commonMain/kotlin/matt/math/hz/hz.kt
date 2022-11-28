@@ -29,7 +29,7 @@ val Number.hz get() = Hz(toDouble())
 data class WaveConfig(
   val carrierCfg: SubWaveConfig,
   val modulatorCfg: SubWaveConfig?,
-  val enabled: Boolean /*temp stupid*/
+  val enabled: Boolean = true /*temp stupid*/
 )
 
 @Serializable
