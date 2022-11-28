@@ -25,3 +25,13 @@ object IndexWrapperConverter: Converter<Index, Double> {
   }
 
 }
+object IndexWrapperIntConverter: Converter<Index, Int> {
+  override fun convertToB(a: Index): Int {
+	return a.asInt
+  }
+
+  override fun convertToA(b: Int): Index {
+	return Index(b)
+  }
+
+}
