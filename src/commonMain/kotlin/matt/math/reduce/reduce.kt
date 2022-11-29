@@ -15,6 +15,9 @@ fun List<Double>.mean() = sum()/size
 fun Sequence<Double>.mean() = toList().mean()
 
 
+fun <M: Mathable<M>> List<M>.mean() = (reduce { acc, m -> acc + m })/size
+fun <M: Mathable<M>> Sequence<M>.mean() = toList().mean()
+
 
 @JvmName("meanInt")
 fun Sequence<Int>.mean() = map { it.toDouble() }.mean()
@@ -39,15 +42,12 @@ fun List<Duration>.median() = when {
 }
 
 
-
 fun DoubleArray.mean() = sum()/size
 fun IntArray.intMean() = (sum()/size.toDouble()).roundToInt()
 fun IntArray.doubleMean() = (sum()/size.toDouble())
 
 
-
 fun <T> Iterable<T>.meanOf(op: (T)->Double) = map { op(it) }.mean()
-
 
 
 @OptIn(kotlin.experimental.ExperimentalTypeInference::class)
@@ -56,7 +56,7 @@ fun <T> Iterable<T>.meanOf(op: (T)->Double) = map { op(it) }.mean()
 inline fun <T> Iterable<T>.sumOf(selector: (T)->Float): Float {
   var sum: Float = 0f
   for (element in this) {
-    sum += selector(element)
+	sum += selector(element)
   }
   return sum
 }
@@ -67,7 +67,7 @@ inline fun <T> Iterable<T>.sumOf(selector: (T)->Float): Float {
 inline fun FloatArray.sumOf(selector: (Float)->Float): Float {
   var sum: Float = 0f
   for (element in this) {
-    sum += selector(element)
+	sum += selector(element)
   }
   return sum
 }
