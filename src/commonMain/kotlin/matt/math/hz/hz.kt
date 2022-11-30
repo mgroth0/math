@@ -11,6 +11,7 @@ import matt.model.data.mathable.DoubleWrapper
 import matt.model.data.num.NumberWrapper
 import matt.model.data.sensemod.Phase
 import matt.model.data.sensemod.WaveForm
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 val Number.hz get() = Hz(toDouble())
@@ -33,6 +34,9 @@ object HzSerializer: KSerializer<Hz> {
 
 @Serializable(with = HzSerializer::class)
 data class Hz(override val asNumber: Double): DoubleWrapper<Hz>, NumberWrapper {
+
+  constructor(interval: Duration): this(1.seconds/interval)
+
   override val asDouble get() = asNumber
   override fun fromDouble(d: Double): Hz {
 	return Hz(d)
