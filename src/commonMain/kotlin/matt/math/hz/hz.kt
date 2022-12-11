@@ -35,6 +35,10 @@ object HzSerializer: KSerializer<Hz> {
 @Serializable(with = HzSerializer::class)
 data class Hz(override val asNumber: Double): DoubleWrapper<Hz>, NumberWrapper {
 
+  companion object {
+	val ZERO = Hz(0.0)
+  }
+
   constructor(interval: Duration): this(1.seconds/interval)
 
   override val asDouble get() = asNumber
