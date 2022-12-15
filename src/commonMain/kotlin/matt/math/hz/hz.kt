@@ -8,7 +8,6 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import matt.model.data.mathable.DoubleWrapper
-import matt.model.data.num.NumberWrapper
 import matt.model.data.sensemod.Phase
 import matt.model.data.sensemod.WaveForm
 import kotlin.time.Duration
@@ -33,7 +32,7 @@ object HzSerializer: KSerializer<Hz> {
 }
 
 @Serializable(with = HzSerializer::class)
-data class Hz(override val asNumber: Double): DoubleWrapper<Hz>, NumberWrapper {
+data class Hz(override val asNumber: Double): DoubleWrapper<Hz> {
 
   companion object {
 	val ZERO = Hz(0.0)

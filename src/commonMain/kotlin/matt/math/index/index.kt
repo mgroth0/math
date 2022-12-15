@@ -1,8 +1,9 @@
 package matt.math.index
 
 import kotlinx.serialization.Serializable
-import matt.model.op.convert.Converter
 import matt.model.data.mathable.IntWrapper
+import matt.model.op.convert.Converter
+import kotlin.math.absoluteValue
 
 
 /*should be a value class*/
@@ -13,6 +14,9 @@ import matt.model.data.mathable.IntWrapper
 
   override val asInt: Int
 	get() = i
+
+  override val abs: Index
+	get() = Index(i.absoluteValue)
 }
 
 object IndexWrapperConverter: Converter<Index, Double> {
@@ -25,6 +29,7 @@ object IndexWrapperConverter: Converter<Index, Double> {
   }
 
 }
+
 object IndexWrapperIntConverter: Converter<Index, Int> {
   override fun convertToB(a: Index): Int {
 	return a.asInt
