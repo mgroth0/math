@@ -1,5 +1,6 @@
 package matt.math.round
 
+import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.roundToInt
 
@@ -13,4 +14,5 @@ fun Double.roundToDecimal(n: Int): Double {
 }
 
 
+fun Double.ceilInt() = ceil(this).toInt()
 fun Double.floorInt() = floor(this).toInt()
