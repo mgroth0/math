@@ -67,4 +67,8 @@ data class SubWaveConfig(
   val phase: Phase,
   val freq: Hz,
   val minAnalog: Int = 0
-)
+) {
+  init {
+	require(minAnalog >= 0)
+  }
+}
