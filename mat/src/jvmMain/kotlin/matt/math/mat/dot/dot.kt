@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package matt.math.mat.dot
 
 import matt.collect.itr.forEachNested
