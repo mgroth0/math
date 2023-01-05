@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package matt.math.big.bgint
 
 import matt.math.big.factorial.factorial

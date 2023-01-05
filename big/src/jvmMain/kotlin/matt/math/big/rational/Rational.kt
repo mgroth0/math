@@ -20,7 +20,7 @@ import java.util.Vector
  * @author Richard J. Mathar
  * @since 2006-06-25
  */
-class rational: Cloneable, Comparable<rational> {
+@OptIn(ExperimentalStdlibApi::class) class rational: Cloneable, Comparable<rational> {
   /**
    * numerator
    */

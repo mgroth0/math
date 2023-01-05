@@ -16,7 +16,7 @@ import java.util.Vector
  * @author Richard J. Mathar
  * @since 2006-08-11
  */
-class prime {
+@OptIn(ExperimentalStdlibApi::class) class prime {
   /**
    * Test if a number is a prime.
    *

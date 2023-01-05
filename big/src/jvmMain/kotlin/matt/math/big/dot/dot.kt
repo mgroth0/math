@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package matt.math.big.dot
 
 import matt.collect.itr.YesIUseCollect

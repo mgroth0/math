@@ -1,6 +1,7 @@
 @file:Suppress("NAME_SHADOWING", "unused", "UNUSED_VARIABLE", "UNCHECKED_CAST", "CovariantEquals",
   "KDocUnresolvedReference", "SpellCheckingInspection", "PARAMETER_NAME_CHANGED_ON_OVERRIDE"
 )
+@file:OptIn(ExperimentalStdlibApi::class)
 
 package matt.math.big.ifactor
 
