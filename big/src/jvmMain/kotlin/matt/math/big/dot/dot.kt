@@ -12,7 +12,7 @@ import org.apfloat.Apfloat
 infix fun Array<out Apfloat?>.dotA(other: Array<out Apfloat?>): Apfloat {
   require(this.size == other.size)
   var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (first != null && second != null) {
@@ -31,7 +31,7 @@ fun yesIUseCollect() {
 infix fun Array<Array<Apfloat?>>.dot(other: Array<Array<Apfloat?>>): Apfloat {
   require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
   var ee = 0.0.toApfloat()
-  (0 until this.size).forEachNested { x, y ->
+  (0 ..< this.size).forEachNested { x, y ->
 	val first = this[x][y]
 	val second = other[x][y]
 	if (first != null && second != null) {
@@ -44,7 +44,7 @@ infix fun Array<Array<Apfloat?>>.dot(other: Array<Array<Apfloat?>>): Apfloat {
 infix fun Array<Array<Double?>>.dot(other: Array<Array<Double?>>): Apfloat {
   require(this.size == this[0].size && this.size == other.size && this[0].size == other[0].size)
   var ee = 0.0.toApfloat()
-  (0 until this.size).forEachNested { x, y ->
+  (0 ..< this.size).forEachNested { x, y ->
 	val first = this[x][y]
 	val second = other[x][y]
 	if (first != null && second != null) {
@@ -58,7 +58,7 @@ infix fun Array<Array<Double?>>.dot(other: Array<Array<Double?>>): Apfloat {
 infix fun Array<Apcomplex>.dot(other: Array<Apcomplex>): Apfloat {
   require(this.size == other.size)
   var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (!first.hasImag && !second.hasImag) {
@@ -73,7 +73,7 @@ infix fun Array<Apcomplex>.dot(other: Array<Apcomplex>): Apfloat {
 infix fun Array<Apfloat>.dot(other: Array<Apfloat>): Apfloat {
   require(this.size == other.size)
   var ee = 0.0.toApfloat()
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (!first.hasImag && !second.hasImag) {

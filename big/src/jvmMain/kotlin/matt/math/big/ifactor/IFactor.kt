@@ -454,7 +454,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 
 	  /* the output contains all products of the form partd[]*pz^ez, ez>0,
              * and with the exception of the 1, all these are appended.
-             */for (i in 1 until partd.size) d.add(partd.elementAt(i))
+             */for (i in 1 ..< partd.size) d.add(partd.elementAt(i))
 	  for (e in 1..ez) {
 		val pzez = pz.pow(e)
 		for (i in partd.indices) d.add(partd.elementAt(i).multiply(pzez))
@@ -694,7 +694,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	 */
 	fun max(set: Vector<Ifactor>): Ifactor {
 	  var resul = set.elementAt(0)
-	  for (i in 1 until set.size) resul = resul.max(set.elementAt(i))
+	  for (i in 1 ..< set.size) resul = resul.max(set.elementAt(i))
 	  return resul
 	} /* Ifactor.max */
 
@@ -707,7 +707,7 @@ class Ifactor: Cloneable, Comparable<Ifactor> {
 	 */
 	fun min(set: Vector<Ifactor>): Ifactor {
 	  var resul = set.elementAt(0)
-	  for (i in 1 until set.size) resul = resul.min(set.elementAt(i))
+	  for (i in 1 ..< set.size) resul = resul.min(set.elementAt(i))
 	  return resul
 	} /* Ifactor.min */
 

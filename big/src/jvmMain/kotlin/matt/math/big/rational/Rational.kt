@@ -137,7 +137,7 @@ class rational: Cloneable, Comparable<rational> {
              * Create a cloned version of references to cfr, without cfr[0]
              */
 	  val clond = Vector<BigInteger>()
-	  for (i in 1 until cfr.size) clond.add(cfr.elementAt(i))
+	  for (i in 1 ..< cfr.size) clond.add(cfr.elementAt(i))
 	  val rec = rational(clond)
 	  a = cfr.firstElement().multiply(rec.a).add(rec.b)
 	  b = rec.a

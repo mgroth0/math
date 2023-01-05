@@ -322,10 +322,10 @@ class BigIntegerMath {
 	  if (c < 0 || c >= cL) throw ArithmeticException("column number " + c + " out of range 0.." + (cL - 1))
 	  val M = Array(rL - 1) { arrayOfNulls<BigInteger>(cL - 1) }
 	  var imrow = 0
-	  for (row in 0 until rL) {
+	  for (row in 0 ..< rL) {
 		if (row != r) {
 		  var imcol = 0
-		  for (col in 0 until cL) {
+		  for (col in 0 ..< cL) {
 			if (col != c) {
 			  M[imrow][imcol] = A[row][col]
 			  imcol++
@@ -359,8 +359,8 @@ class BigIntegerMath {
 	  if (cL == 0) throw ArithmeticException("zero column count in matrix")
 	  if (c < 0 || c >= cL) throw ArithmeticException("column number " + c + " out of range 0.." + (cL - 1))
 	  val M = Array(rL) { arrayOfNulls<BigInteger>(cL) }
-	  for (row in 0 until rL) {
-		for (col in 0 until cL) {
+	  for (row in 0 ..< rL) {
+		for (col in 0 ..< cL) {
 		  /* currently, v may just be longer than the row count, and surplus
                  * elements will be ignored. Shorter v lead to an exception.
                  */
@@ -395,7 +395,7 @@ class BigIntegerMath {
 		return d.subtract(A[0][1]!!.multiply(A[1][0]))
 	  } else {
 		/* Work arbitrarily along the first column of the matrix */
-		for (r in 0 until rL) {
+		for (r in 0 ..< rL) {
 		  /* Do not consider minors that do no contribute anyway
                  */
 		  if (A[r][0]!!.compareTo(BigInteger.ZERO) != 0) {
@@ -434,16 +434,16 @@ class BigIntegerMath {
 	  val x = arrayOfNulls<rational>(rL)
 
 	  /* copy of r.h.s ito a mutable Rationalright hand side
-         */for (c in 0 until cL) x[c] = rational(rhs[c])
+         */for (c in 0 ..< cL) x[c] = rational(rhs[c])
 
 	  /* Create zeros downwards column c  by linear combination of row c and row r.
-         */for (c in 0 until cL - 1) {
+         */for (c in 0 ..< cL - 1) {
 		/* zero on the diagonal? swap with a non-zero row, searched with index r */
 		if (A[c][c].compareTo(BigInteger.ZERO) == 0) {
 		  var swpd = false
-		  for (r in c + 1 until rL) {
+		  for (r in c + 1 ..< rL) {
 			if (A[r][c].compareTo(BigInteger.ZERO) != 0) {
-			  for (cpr in c until cL) {
+			  for (cpr in c ..< cL) {
 				val tmp = A[c][cpr]
 				A[c][cpr] = A[r][cpr]
 				A[r][cpr] = tmp
@@ -458,10 +458,10 @@ class BigIntegerMath {
 		  /* not swapped with a non-zero row: determinant zero and no solution
                  */if (!swpd) throw ArithmeticException("Zero determinant of main matrix")
 		}
-		/* create zero at A[c+1..cL-1][c] */for (r in c + 1 until rL) {
+		/* create zero at A[c+1..cL-1][c] */for (r in c + 1 ..< rL) {
 		  /* skip the cpr=c which actually sets the zero: this element is not visited again
                  */
-		  for (cpr in c + 1 until cL) {
+		  for (cpr in c + 1 ..< cL) {
 			val tmp = A[c][c].multiply(A[r][cpr]).subtract(A[c][cpr].multiply(A[r][c]))
 			A[r][cpr] = tmp
 		  }

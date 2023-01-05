@@ -63,7 +63,7 @@ class prime {
              */if (a.modPow(d, n).compareTo(BigInteger.ONE) == 0) return true
 
 	  /* test whether a^(d*2^r) = -1 (mod n), 0<=r<s
-             */for (r in 0 until s) {
+             */for (r in 0 ..< s) {
 		if (a.modPow(d.shiftLeft(r), n).compareTo(q) == 0) return true
 	  }
 	  false

@@ -3,7 +3,7 @@ package matt.math.dot
 infix fun FloatArray.dot(other: FloatArray): Float {
   require(this.size == other.size)
   var ee = 0.0.toFloat()
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (!first.isNaN() && !second.isNaN()) {
@@ -17,7 +17,7 @@ infix fun FloatArray.dot(other: FloatArray): Float {
 infix fun DoubleArray.dot(other: DoubleArray): Double {
   require(this.size == other.size)
   var ee = 0.0
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (!first.isNaN() && !second.isNaN()) {
@@ -32,7 +32,7 @@ infix fun DoubleArray.dot(other: DoubleArray): Double {
 infix fun Array<out Float?>.dot(other: Array<out Float?>): Float {
   require(this.size == other.size)
   var ee = 0.0f
-  (0 until this.size).forEach { x ->
+  (0 ..< this.size).forEach { x ->
 	val first = this[x]
 	val second = other[x]
 	if (first != null && second != null) {
