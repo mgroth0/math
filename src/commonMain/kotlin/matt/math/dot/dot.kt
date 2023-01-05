@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package matt.math.dot
 
 infix fun FloatArray.dot(other: FloatArray): Float {
